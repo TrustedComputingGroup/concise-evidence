@@ -1,0 +1,26 @@
+/ concise-mid-tag / {
+  / comid.tag-identity / 1 : {
+    / comid.tag-id / 0 : h'1EACD596F4A34FB699BFAEB58E0A4E48'
+  },
+  / comid.entity / 2 : [ {
+    / comid.entity-name / 0 : "OEM-A",
+    / comid.reg-id / 1 : 32("https://oem-a.example"),
+    / comid.role / 2 : [ 0 ] / tag-creator /
+  } ],
+  / comid.linked-tags / 3 : [ 
+    / linked-tag-map / {
+        / comid.linked-tag-id / 0 : h'1EACD596F4A34FB699BFAEB58E0A4E47',
+        / comid.tag-rel / 1 : / comid.supplements / 0
+      },
+    / linked-tag-map / {
+        / comid.linked-tag-id / 0 : h'AF1CD895BE784ADBB7E9ADD44A65ABF3',
+        / comid.tag-rel / 1 : / comid.supplements / 0
+      }
+    ],
+  / comid.triples / 4 : {
+    / comid.dependency-triples / 4 : [
+      3, [2]
+      2, [1]
+    ]
+  }
+}
