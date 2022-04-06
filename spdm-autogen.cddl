@@ -1,0 +1,1350 @@
+spdm-toc = #6.570(toc-map)
+toc-map = {
+  spdm.tagged-evidence => [ + $tagged-evidence-type-choice],
+  ? spdm.rim-locators =>  [ + corim-locator-map ] ;see corim schema
+  * $$toc-map-extension
+}
+
+$tagged-evidence-type-choice /= #6.571(concise-evidence-map)
+
+ce.ev-triples = 0
+
+ce.evidence-triples = 0
+ce.identity-triples = 1
+ce.dependency-triples = 2
+ce.swid-triples = 3
+
+ce.coswid-tag-ids = 0
+ce.coswid-evidence = 1
+
+
+$$measurement-values-map-extension //= (
+  ? comid.spdm-indirect => [ + index-type]
+)
+index-type = uint
+
+$$triples-map-extension //= ( 
+? comid.coswid-triple => coswid-triple-record 
+)
+coswid-triple-record = [ environment-map, [ + concise-swid-tag-id ] ]
+
+$$triples-map-extension //= ( 
+? comid.dependency-triples => domain-dependency-triple-record 
+)
+
+domain-dependency-triple-record = [
+ $domain-type-choice, [ + $domain-type-choice ]
+]
+$domain-type-choice /= uint ; local scope identifier
+$domain-type-choice /= tstr ; local scope identifier
+$domain-type-choice /= tagged-uuid-type ; global scope identifier
+
+$$triples-map-extension //= ( 
+? comid.domain-membership-triples => domain-membership-triple-record 
+)
+
+domain-membership-triple-record = [
+ $domain-type-choice, [ + environment-map ]
+]
+
+
+comid.dependency-triples = 4
+comid.domain-membership-triples = 5
+comid.coswid-triple = 6
+
+comid.spdm-indirect = 12
+
+concise-evidence-map = {
+  ce.ev-triples => ev-triples-map
+  * $$concise-evidence-map-extension
+}
+$evidence-id-type-choice /= tagged-uuid-type
+
+ev-triples-map = non-empty< {
+  ? ce.evidence-triples => [ + reference-triple-record ]
+  ? ce.identity-triples => [ + identity-triple-record ]
+  ? ce.dependency-triples => [ + domain-dependency-triple-record ]
+  ? ce.domain-membership-triples => [ + domain-membership-triple-record ]
+  ? ce.coswid-triples => [ + ev-coswid-triple-record ]
+  * $$ev-triples-map-extension
+} > 
+
+ev-coswid-triple-record = [ 
+  environment-map, 
+  non-empty< { 
+    ce.coswid-tag-ids => [ * concise-swid-tag-id ], 
+    ? ce.coswid-evidence => evidence-entry 
+  } > 
+]
+
+spdm.tagged-evidence = 0
+spdm.rim-locators = 1
+
+corim = #6.500($concise-reference-integrity-manifest-type-choice)
+
+tagged-corim-map = #6.501(corim-map)
+$concise-reference-integrity-manifest-type-choice /= tagged-corim-map
+$concise-reference-integrity-manifest-type-choice /= #6.502(signed-corim)
+
+
+signed-corim = #6.18(COSE-Sign1-corim)
+
+protected-corim-header-map = {
+  corim.alg-id => int
+  corim.content-type => "application/corim-unsigned+cbor"
+  corim.issuer-key-id => bstr
+  corim.meta => bstr .cbor corim-meta-map
+  * cose-label => cose-values 
+}
+
+corim-meta-map = {
+  corim.signer => corim-signer-map
+  ? corim.signature-validity => validity-map
+}
+
+corim-signer-map = {
+  corim.signer-name => $entity-name-type-choice
+  ? corim.signer-uri => uri
+  * $$corim-signer-map-extension
+}
+
+validity-map = {
+  ? corim.not-before => time
+  corim.not-after => time
+}
+
+unprotected-corim-header-map = {
+  * cose-label => cose-values
+}
+
+COSE-Sign1-corim = [
+  protected: bstr .cbor protected-corim-header-map
+  unprotected: unprotected-corim-header-map
+  payload: bstr .cbor tagged-corim-map
+  signature: bstr
+]
+
+
+corim-map = {
+  corim.id => $corim-id-type-choice
+  corim.tags => [ + $concise-tag-type-choice ]
+  ? corim.dependent-rims => [ + corim-locator-map ]
+  ? corim.profile => [ + profile-type-choice ]
+  ? corim.rim-validity => validity-map
+  ? corim.entities => [ + corim-entity-map ]
+  * $$corim-map-extension
+}
+
+profile-type-choice = uri / tagged-oid-type
+
+corim-locator-map = {
+  corim.href => uri
+  ? corim.thumbprint => hash-entry
+}
+
+$concise-tag-type-choice /= #6.505(bytes .cbor concise-swid-tag)
+$concise-tag-type-choice /= #6.506(bytes .cbor concise-mid-tag)
+
+corim-entity-map = {
+  corim.entity-name => $entity-name-type-choice
+  ? corim.reg-id => uri
+  corim.role => $corim-role-type-choice
+  * $$corim-entity-map-extension
+}
+
+$corim-role-type-choice /= corim.manifest-creator
+
+
+concise-mid-tag = {
+  ? comid.language => language-type
+  comid.tag-identity => tag-identity-map
+  ? comid.entities => [ + entity-map ]
+  ? comid.linked-tags => [ + linked-tag-map ]
+  comid.triples => triples-map
+  * $$concise-mid-tag-extension
+}
+
+language-type = text
+
+tag-identity-map = {
+  comid.tag-id => $tag-id-type-choice
+  ? comid.tag-version => tag-version-type
+}
+
+$tag-id-type-choice /= tstr
+$tag-id-type-choice /= uuid-type
+
+tag-version-type = uint .default 0
+
+entity-map = {
+  comid.entity-name => $entity-name-type-choice
+  ? comid.reg-id => uri
+  comid.role => [ + $comid-role-type-choice ]
+  * $$entity-map-extension
+}
+
+$comid-role-type-choice /= comid.tag-creator
+$comid-role-type-choice /= comid.creator
+$comid-role-type-choice /= comid.maintainer
+
+linked-tag-map = {
+  comid.linked-tag-id => $tag-id-type-choice
+  comid.tag-rel => $tag-rel-type-choice
+}
+
+$tag-rel-type-choice /= comid.supplements
+$tag-rel-type-choice /= comid.replaces
+
+triples-map = non-empty<{
+  ? comid.reference-triples => [ + reference-triple-record ]
+  ? comid.endorsed-triples => [ + endorsed-triple-record ]
+  ? comid.attest-key-triples => [ + attest-key-triple-record ]
+  ? comid.identity-triples => [ + identity-triple-record ]
+  * $$triples-map-extension
+}>
+
+reference-triple-record = [
+  environment-map ; target environment
+  [ + measurement-map ] ; reference measurements
+]
+
+endorsed-triple-record = [
+  environment-map ; (target or attesting) environment
+  [ + measurement-map ] ; endorsed measurements
+]
+
+attest-key-triple-record = [
+  environment-map ; attesting environment
+  [ + $crypto-key-type-choice ] ; attestation verification key(s)
+]
+
+identity-triple-record = [
+  environment-map ; device identifier (instance or class)
+  [ + $crypto-key-type-choice ] ; DevID, or semantically equivalent
+]
+
+$crypto-key-type-choice /= tagged-pkix-base64-key-type
+$crypto-key-type-choice /= tagged-pkix-base64-cert-type
+$crypto-key-type-choice /= tagged-pkix-base64-cert-path-type
+
+tagged-pkix-base64-key-type = #6.554(tstr)
+tagged-pkix-base64-cert-type = #6.555(tstr)
+tagged-pkix-base64-cert-path-type = #6.556(tstr)
+
+
+environment-map = non-empty<{
+  ? comid.class => class-map
+  ? comid.instance => $instance-id-type-choice
+  ? comid.group => $group-id-type-choice
+}>
+
+class-map = non-empty<{
+  ? comid.class-id => $class-id-type-choice
+  ? comid.vendor => tstr
+  ? comid.model => tstr
+  ? comid.layer => uint
+  ? comid.index => uint
+}>
+
+$class-id-type-choice /= tagged-oid-type
+$class-id-type-choice /= tagged-uuid-type
+$class-id-type-choice /= tagged-int-type
+
+$instance-id-type-choice /= tagged-ueid-type
+$instance-id-type-choice /= tagged-uuid-type
+
+$group-id-type-choice /= tagged-uuid-type
+
+oid-type = bytes
+tagged-oid-type = #6.111(oid-type)
+
+tagged-uuid-type = #6.37(uuid-type)
+
+tagged-int-type = #6.551(int)
+
+ueid-type = bytes .size 33
+tagged-ueid-type = #6.550(ueid-type)
+
+$measured-element-type-choice /= tagged-oid-type
+$measured-element-type-choice /= tagged-uuid-type
+$measured-element-type-choice /= uint
+
+measurement-map = {
+  ? comid.mkey => $measured-element-type-choice
+  comid.mval => measurement-values-map
+  ? comid.authorized-by => [ + $crypto-key-type-choice ]
+}
+
+measurement-values-map = non-empty<{
+  ? comid.ver => version-map
+  ? comid.svn => svn-type-choice
+  ? comid.digests => digests-type
+  ? comid.flags => flags-map
+  ? raw-value-group
+  ? comid.mac-addr => mac-addr-type-choice
+  ? comid.ip-addr =>  ip-addr-type-choice
+  ? comid.serial-number => serial-number-type
+  ? comid.ueid => ueid-type
+  ? comid.uuid => uuid-type
+  ? comid.name => tstr
+  * $$measurement-values-map-extension
+}>
+
+version-map = {
+  comid.version => version-type
+  ? comid.version-scheme => $version-scheme
+}
+version-type = text .default '0.0.0'
+
+svn-type = uint
+svn = svn-type
+min-svn = svn-type
+tagged-svn = #6.552(svn)
+tagged-min-svn = #6.553(min-svn)
+svn-type-choice = tagged-svn / tagged-min-svn
+
+
+flags-map = {
+  ? comid.operational-flag-configured => bool
+  ? comid.operational-flag-secure => bool
+  ? comid.operational-flag-recovery => bool
+  ? comid.operational-flag-debug => bool
+  ? comid.operational-flag-replay-protected => bool
+  ? comid.operational-flag-integrity-protected => bool
+  * $$flags-map-extension
+}
+
+raw-value-group = (
+  comid.raw-value => $raw-value-type-choice
+  ? comid.raw-value-mask => raw-value-mask-type
+)
+
+$raw-value-type-choice /= #6.560(bytes)
+
+raw-value-mask-type = bytes
+
+ip-addr-type-choice = ip4-addr-type / ip6-addr-type
+ip4-addr-type = bytes .size 4
+ip6-addr-type = bytes .size 16
+
+mac-addr-type-choice = eui48-addr-type / eui64-addr-type
+eui48-addr-type = bytes .size 6
+eui64-addr-type = bytes .size 8
+
+serial-number-type = text
+
+digests-type = [ + hash-entry ]
+
+
+concise-swid-tag = {
+  tag-id => text / bstr .size 16,
+  tag-version => integer,
+  ? corpus => bool,
+  ? patch => bool,
+  ? supplemental => bool,
+  software-name => text,
+  ? software-version => text,
+  ? version-scheme => $version-scheme,
+  ? media => text,
+  ? software-meta => one-or-more<software-meta-entry>,
+  entity => one-or-more<entity-entry>,
+  ? link => one-or-more<link-entry>,
+  ? payload-or-evidence,
+  * $$coswid-extension,
+  global-attributes,
+}
+
+payload-or-evidence //= ( payload => payload-entry )
+payload-or-evidence //= ( evidence => evidence-entry )
+
+any-uri = uri
+label = text / int
+
+$version-scheme /= multipartnumeric
+$version-scheme /= multipartnumeric-suffix
+$version-scheme /= alphanumeric
+$version-scheme /= decimal
+$version-scheme /= semver
+$version-scheme /= int / text
+
+any-attribute = (
+  label => one-or-more<text> / one-or-more<int>
+)
+
+one-or-more<T> = T / [ 2* T ]
+
+global-attributes = (
+  ? lang => text,
+  * any-attribute,
+)
+
+hash-entry = [
+  hash-alg-id: int,
+  hash-value: bytes,
+]
+
+entity-entry = {
+  entity-name => text,
+  ? reg-id => any-uri,
+  role => one-or-more<$role>,
+  ? thumbprint => hash-entry,
+  * $$entity-extension,
+  global-attributes,
+}
+
+$role /= tag-creator
+$role /= software-creator
+$role /= aggregator
+$role /= distributor
+$role /= licensor
+$role /= maintainer
+$role /= int / text
+
+link-entry = {
+  ? artifact => text,
+  href => any-uri,
+  ? media => text,
+  ? ownership => $ownership,
+  rel => $rel,
+  ? media-type => text,
+  ? use => $use,
+  * $$link-extension,
+  global-attributes,
+}
+
+$ownership /= shared
+$ownership /= private
+$ownership /= abandon
+$ownership /= int / text
+
+$rel /= ancestor
+$rel /= component
+$rel /= feature
+$rel /= installationmedia
+$rel /= packageinstaller
+$rel /= parent
+$rel /= patches
+$rel /= requires
+$rel /= see-also
+$rel /= supersedes
+$rel /= supplemental
+$rel /= -256..64436 / text
+
+$use /= optional
+$use /= required
+$use /= recommended
+$use /= int / text
+
+software-meta-entry = {
+  ? activation-status => text,
+  ? channel-type => text,
+  ? colloquial-version => text,
+  ? description => text,
+  ? edition => text,
+  ? entitlement-data-required => bool,
+  ? entitlement-key => text,
+  ? generator =>  text / bstr .size 16,
+  ? persistent-id => text,
+  ? product => text,
+  ? product-family => text,
+  ? revision => text,
+  ? summary => text,
+  ? unspsc-code => text,
+  ? unspsc-version => text,
+  * $$software-meta-extension,
+  global-attributes,
+}
+
+path-elements-group = ( ? directory => one-or-more<directory-entry>,
+                        ? file => one-or-more<file-entry>,
+                      )
+
+resource-collection = (
+  path-elements-group,
+  ? process => one-or-more<process-entry>,
+  ? resource => one-or-more<resource-entry>,
+  * $$resource-collection-extension,
+)
+
+file-entry = {
+  filesystem-item,
+  ? size => uint,
+  ? file-version => text,
+  ? hash => hash-entry,
+  * $$file-extension,
+  global-attributes,
+}
+
+directory-entry = {
+  filesystem-item,
+  ? path-elements => { path-elements-group },
+  * $$directory-extension,
+  global-attributes,
+}
+
+process-entry = {
+  process-name => text,
+  ? pid => integer,
+  * $$process-extension,
+  global-attributes,
+}
+
+resource-entry = {
+  type => text,
+  * $$resource-extension,
+  global-attributes,
+}
+
+filesystem-item = (
+  ? key => bool,
+  ? location => text,
+  fs-name => text,
+  ? root => text,
+)
+
+payload-entry = {
+  resource-collection,
+  * $$payload-extension,
+  global-attributes,
+}
+
+evidence-entry = {
+  resource-collection,
+  ? date => integer-time,
+  ? device-id => text,
+  ? location => text,
+  * $$evidence-extension,
+  global-attributes,
+}
+
+integer-time = #6.1(int)
+
+tag-id = 0
+software-name = 1
+entity = 2
+evidence = 3
+link = 4
+software-meta = 5
+payload = 6
+hash = 7
+corpus = 8
+patch = 9
+media = 10
+supplemental = 11
+tag-version = 12
+software-version = 13
+version-scheme = 14
+lang = 15
+directory = 16
+file = 17
+process = 18
+resource = 19
+size = 20
+file-version = 21
+key = 22
+location = 23
+fs-name = 24
+root = 25
+path-elements = 26
+process-name = 27
+pid = 28
+type = 29
+entity-name = 31
+reg-id = 32
+role = 33
+thumbprint = 34
+date = 35
+device-id = 36
+artifact = 37
+href = 38
+ownership = 39
+rel = 40
+media-type = 41
+use = 42
+activation-status = 43
+channel-type = 44
+colloquial-version = 45
+description = 46
+edition = 47
+entitlement-data-required = 48
+entitlement-key = 49
+generator = 50
+persistent-id = 51
+product = 52
+product-family = 53
+revision = 54
+summary = 55
+unspsc-code = 56
+unspsc-version = 57
+
+multipartnumeric = 1
+multipartnumeric-suffix = 2
+alphanumeric = 3
+decimal = 4
+semver = 16384
+
+tag-creator=1
+software-creator=2
+aggregator=3
+distributor=4
+licensor=5
+maintainer=6
+
+abandon=1
+private=2
+shared=3
+
+ancestor=1
+component=2
+feature=3
+installationmedia=4
+packageinstaller=5
+parent=6
+patches=7
+requires=8
+see-also=9
+supersedes=10
+
+optional=1
+required=2
+recommended=3
+
+comid.language = 0
+comid.tag-identity = 1
+comid.entities = 2
+comid.linked-tags = 3
+comid.triples = 4
+
+comid.tag-id = 0
+comid.tag-version = 1
+
+comid.entity-name = 0
+comid.reg-id = 1
+comid.role = 2
+
+comid.linked-tag-id = 0
+comid.tag-rel = 1
+
+comid.reference-triples = 0
+comid.endorsed-triples = 1
+comid.identity-triples = 2
+comid.attest-key-triples = 3
+
+comid.class = 0
+comid.instance = 1
+comid.group = 2
+
+comid.class-id = 0
+comid.vendor = 1
+comid.model = 2
+comid.layer = 3
+comid.index = 4
+
+comid.mkey = 0
+comid.mval = 1
+comid.authorized-by = 2
+
+comid.ver = 0
+comid.svn = 1
+comid.digests = 2
+comid.flags = 3
+comid.raw-value = 4
+comid.raw-value-mask = 5
+comid.mac-addr = 6
+comid.ip-addr = 7
+comid.serial-number = 8
+comid.ueid = 9
+comid.uuid = 10
+comid.name = 11
+
+comid.version = 0
+comid.version-scheme = 1
+
+comid.supplements = 0
+
+comid.replaces = 1
+
+comid.tag-creator = 0
+comid.creator = 1
+comid.maintainer = 2
+
+comid.operational-flag-configured = 0
+comid.operational-flag-secure = 1
+comid.operational-flag-recovery = 2
+comid.operational-flag-debug = 3
+comid.operational-flag-replay-protected = 4
+comid.operational-flag-integrity-protected = 5
+
+
+corim.id = 0
+corim.tags = 1
+corim.dependent-rims = 2
+corim.profile = 3
+corim.rim-validity = 4
+corim.entities = 5
+
+corim.href = 0
+corim.thumbprint = 1
+
+corim.alg-id = 1
+corim.content-type = 3
+corim.issuer-key-id = 4
+corim.meta = 8
+
+corim.not-before = 0
+corim.not-after = 1
+
+corim.signer = 0
+corim.signature-validity = 1
+
+corim.signer-name = 0
+corim.signer-uri = 1
+
+corim.entity-name = 0
+corim.reg-id = 1
+corim.role = 2
+
+corim.manifest-creator = 1
+
+
+non-empty<M> = (M) .within ({ + any => any })
+
+
+
+cose-label = int / tstr
+cose-values = any
+
+$entity-name-type-choice /= text
+
+$corim-id-type-choice /= tstr
+$corim-id-type-choice /= uuid-type
+
+uuid-type = bytes .size 16
+
+
+
+concise-mid-tag = {
+  ? comid.language => language-type
+  comid.tag-identity => tag-identity-map
+  ? comid.entities => [ + entity-map ]
+  ? comid.linked-tags => [ + linked-tag-map ]
+  comid.triples => triples-map
+  * $$concise-mid-tag-extension
+}
+
+language-type = text
+
+tag-identity-map = {
+  comid.tag-id => $tag-id-type-choice
+  ? comid.tag-version => tag-version-type
+}
+
+$tag-id-type-choice /= tstr
+$tag-id-type-choice /= uuid-type
+
+tag-version-type = uint .default 0
+
+entity-map = {
+  comid.entity-name => $entity-name-type-choice
+  ? comid.reg-id => uri
+  comid.role => [ + $comid-role-type-choice ]
+  * $$entity-map-extension
+}
+
+$comid-role-type-choice /= comid.tag-creator
+$comid-role-type-choice /= comid.creator
+$comid-role-type-choice /= comid.maintainer
+
+linked-tag-map = {
+  comid.linked-tag-id => $tag-id-type-choice
+  comid.tag-rel => $tag-rel-type-choice
+}
+
+$tag-rel-type-choice /= comid.supplements
+$tag-rel-type-choice /= comid.replaces
+
+triples-map = non-empty<{
+  ? comid.reference-triples => [ + reference-triple-record ]
+  ? comid.endorsed-triples => [ + endorsed-triple-record ]
+  ? comid.attest-key-triples => [ + attest-key-triple-record ]
+  ? comid.identity-triples => [ + identity-triple-record ]
+  * $$triples-map-extension
+}>
+
+reference-triple-record = [
+  environment-map ; target environment
+  [ + measurement-map ] ; reference measurements
+]
+
+endorsed-triple-record = [
+  environment-map ; (target or attesting) environment
+  [ + measurement-map ] ; endorsed measurements
+]
+
+attest-key-triple-record = [
+  environment-map ; attesting environment
+  [ + $crypto-key-type-choice ] ; attestation verification key(s)
+]
+
+identity-triple-record = [
+  environment-map ; device identifier (instance or class)
+  [ + $crypto-key-type-choice ] ; DevID, or semantically equivalent
+]
+
+$crypto-key-type-choice /= tagged-pkix-base64-key-type
+$crypto-key-type-choice /= tagged-pkix-base64-cert-type
+$crypto-key-type-choice /= tagged-pkix-base64-cert-path-type
+
+tagged-pkix-base64-key-type = #6.554(tstr)
+tagged-pkix-base64-cert-type = #6.555(tstr)
+tagged-pkix-base64-cert-path-type = #6.556(tstr)
+
+
+environment-map = non-empty<{
+  ? comid.class => class-map
+  ? comid.instance => $instance-id-type-choice
+  ? comid.group => $group-id-type-choice
+}>
+
+class-map = non-empty<{
+  ? comid.class-id => $class-id-type-choice
+  ? comid.vendor => tstr
+  ? comid.model => tstr
+  ? comid.layer => uint
+  ? comid.index => uint
+}>
+
+$class-id-type-choice /= tagged-oid-type
+$class-id-type-choice /= tagged-uuid-type
+$class-id-type-choice /= tagged-int-type
+
+$instance-id-type-choice /= tagged-ueid-type
+$instance-id-type-choice /= tagged-uuid-type
+
+$group-id-type-choice /= tagged-uuid-type
+
+oid-type = bytes
+tagged-oid-type = #6.111(oid-type)
+
+tagged-uuid-type = #6.37(uuid-type)
+
+tagged-int-type = #6.551(int)
+
+ueid-type = bytes .size 33
+tagged-ueid-type = #6.550(ueid-type)
+
+$measured-element-type-choice /= tagged-oid-type
+$measured-element-type-choice /= tagged-uuid-type
+$measured-element-type-choice /= uint
+
+measurement-map = {
+  ? comid.mkey => $measured-element-type-choice
+  comid.mval => measurement-values-map
+  ? comid.authorized-by => [ + $crypto-key-type-choice ]
+}
+
+measurement-values-map = non-empty<{
+  ? comid.ver => version-map
+  ? comid.svn => svn-type-choice
+  ? comid.digests => digests-type
+  ? comid.flags => flags-map
+  ? raw-value-group
+  ? comid.mac-addr => mac-addr-type-choice
+  ? comid.ip-addr =>  ip-addr-type-choice
+  ? comid.serial-number => serial-number-type
+  ? comid.ueid => ueid-type
+  ? comid.uuid => uuid-type
+  ? comid.name => tstr
+  * $$measurement-values-map-extension
+}>
+
+version-map = {
+  comid.version => version-type
+  ? comid.version-scheme => $version-scheme
+}
+version-type = text .default '0.0.0'
+
+svn-type = uint
+svn = svn-type
+min-svn = svn-type
+tagged-svn = #6.552(svn)
+tagged-min-svn = #6.553(min-svn)
+svn-type-choice = tagged-svn / tagged-min-svn
+
+
+flags-map = {
+  ? comid.operational-flag-configured => bool
+  ? comid.operational-flag-secure => bool
+  ? comid.operational-flag-recovery => bool
+  ? comid.operational-flag-debug => bool
+  ? comid.operational-flag-replay-protected => bool
+  ? comid.operational-flag-integrity-protected => bool
+  * $$flags-map-extension
+}
+
+raw-value-group = (
+  comid.raw-value => $raw-value-type-choice
+  ? comid.raw-value-mask => raw-value-mask-type
+)
+
+$raw-value-type-choice /= #6.560(bytes)
+
+raw-value-mask-type = bytes
+
+ip-addr-type-choice = ip4-addr-type / ip6-addr-type
+ip4-addr-type = bytes .size 4
+ip6-addr-type = bytes .size 16
+
+mac-addr-type-choice = eui48-addr-type / eui64-addr-type
+eui48-addr-type = bytes .size 6
+eui64-addr-type = bytes .size 8
+
+serial-number-type = text
+
+digests-type = [ + hash-entry ]
+
+
+comid.language = 0
+comid.tag-identity = 1
+comid.entities = 2
+comid.linked-tags = 3
+comid.triples = 4
+
+comid.tag-id = 0
+comid.tag-version = 1
+
+comid.entity-name = 0
+comid.reg-id = 1
+comid.role = 2
+
+comid.linked-tag-id = 0
+comid.tag-rel = 1
+
+comid.reference-triples = 0
+comid.endorsed-triples = 1
+comid.identity-triples = 2
+comid.attest-key-triples = 3
+
+comid.class = 0
+comid.instance = 1
+comid.group = 2
+
+comid.class-id = 0
+comid.vendor = 1
+comid.model = 2
+comid.layer = 3
+comid.index = 4
+
+comid.mkey = 0
+comid.mval = 1
+comid.authorized-by = 2
+
+comid.ver = 0
+comid.svn = 1
+comid.digests = 2
+comid.flags = 3
+comid.raw-value = 4
+comid.raw-value-mask = 5
+comid.mac-addr = 6
+comid.ip-addr = 7
+comid.serial-number = 8
+comid.ueid = 9
+comid.uuid = 10
+comid.name = 11
+
+comid.version = 0
+comid.version-scheme = 1
+
+comid.supplements = 0
+
+comid.replaces = 1
+
+comid.tag-creator = 0
+comid.creator = 1
+comid.maintainer = 2
+
+comid.operational-flag-configured = 0
+comid.operational-flag-secure = 1
+comid.operational-flag-recovery = 2
+comid.operational-flag-debug = 3
+comid.operational-flag-replay-protected = 4
+comid.operational-flag-integrity-protected = 5
+
+
+concise-swid-tag = {
+  tag-id => text / bstr .size 16,
+  tag-version => integer,
+  ? corpus => bool,
+  ? patch => bool,
+  ? supplemental => bool,
+  software-name => text,
+  ? software-version => text,
+  ? version-scheme => $version-scheme,
+  ? media => text,
+  ? software-meta => one-or-more<software-meta-entry>,
+  entity => one-or-more<entity-entry>,
+  ? link => one-or-more<link-entry>,
+  ? payload-or-evidence,
+  * $$coswid-extension,
+  global-attributes,
+}
+
+payload-or-evidence //= ( payload => payload-entry )
+payload-or-evidence //= ( evidence => evidence-entry )
+
+any-uri = uri
+label = text / int
+
+$version-scheme /= multipartnumeric
+$version-scheme /= multipartnumeric-suffix
+$version-scheme /= alphanumeric
+$version-scheme /= decimal
+$version-scheme /= semver
+$version-scheme /= int / text
+
+any-attribute = (
+  label => one-or-more<text> / one-or-more<int>
+)
+
+one-or-more<T> = T / [ 2* T ]
+
+global-attributes = (
+  ? lang => text,
+  * any-attribute,
+)
+
+hash-entry = [
+  hash-alg-id: int,
+  hash-value: bytes,
+]
+
+entity-entry = {
+  entity-name => text,
+  ? reg-id => any-uri,
+  role => one-or-more<$role>,
+  ? thumbprint => hash-entry,
+  * $$entity-extension,
+  global-attributes,
+}
+
+$role /= tag-creator
+$role /= software-creator
+$role /= aggregator
+$role /= distributor
+$role /= licensor
+$role /= maintainer
+$role /= int / text
+
+link-entry = {
+  ? artifact => text,
+  href => any-uri,
+  ? media => text,
+  ? ownership => $ownership,
+  rel => $rel,
+  ? media-type => text,
+  ? use => $use,
+  * $$link-extension,
+  global-attributes,
+}
+
+$ownership /= shared
+$ownership /= private
+$ownership /= abandon
+$ownership /= int / text
+
+$rel /= ancestor
+$rel /= component
+$rel /= feature
+$rel /= installationmedia
+$rel /= packageinstaller
+$rel /= parent
+$rel /= patches
+$rel /= requires
+$rel /= see-also
+$rel /= supersedes
+$rel /= supplemental
+$rel /= -256..64436 / text
+
+$use /= optional
+$use /= required
+$use /= recommended
+$use /= int / text
+
+software-meta-entry = {
+  ? activation-status => text,
+  ? channel-type => text,
+  ? colloquial-version => text,
+  ? description => text,
+  ? edition => text,
+  ? entitlement-data-required => bool,
+  ? entitlement-key => text,
+  ? generator =>  text / bstr .size 16,
+  ? persistent-id => text,
+  ? product => text,
+  ? product-family => text,
+  ? revision => text,
+  ? summary => text,
+  ? unspsc-code => text,
+  ? unspsc-version => text,
+  * $$software-meta-extension,
+  global-attributes,
+}
+
+path-elements-group = ( ? directory => one-or-more<directory-entry>,
+                        ? file => one-or-more<file-entry>,
+                      )
+
+resource-collection = (
+  path-elements-group,
+  ? process => one-or-more<process-entry>,
+  ? resource => one-or-more<resource-entry>,
+  * $$resource-collection-extension,
+)
+
+file-entry = {
+  filesystem-item,
+  ? size => uint,
+  ? file-version => text,
+  ? hash => hash-entry,
+  * $$file-extension,
+  global-attributes,
+}
+
+directory-entry = {
+  filesystem-item,
+  ? path-elements => { path-elements-group },
+  * $$directory-extension,
+  global-attributes,
+}
+
+process-entry = {
+  process-name => text,
+  ? pid => integer,
+  * $$process-extension,
+  global-attributes,
+}
+
+resource-entry = {
+  type => text,
+  * $$resource-extension,
+  global-attributes,
+}
+
+filesystem-item = (
+  ? key => bool,
+  ? location => text,
+  fs-name => text,
+  ? root => text,
+)
+
+payload-entry = {
+  resource-collection,
+  * $$payload-extension,
+  global-attributes,
+}
+
+evidence-entry = {
+  resource-collection,
+  ? date => integer-time,
+  ? device-id => text,
+  ? location => text,
+  * $$evidence-extension,
+  global-attributes,
+}
+
+integer-time = #6.1(int)
+
+tag-id = 0
+software-name = 1
+entity = 2
+evidence = 3
+link = 4
+software-meta = 5
+payload = 6
+hash = 7
+corpus = 8
+patch = 9
+media = 10
+supplemental = 11
+tag-version = 12
+software-version = 13
+version-scheme = 14
+lang = 15
+directory = 16
+file = 17
+process = 18
+resource = 19
+size = 20
+file-version = 21
+key = 22
+location = 23
+fs-name = 24
+root = 25
+path-elements = 26
+process-name = 27
+pid = 28
+type = 29
+entity-name = 31
+reg-id = 32
+role = 33
+thumbprint = 34
+date = 35
+device-id = 36
+artifact = 37
+href = 38
+ownership = 39
+rel = 40
+media-type = 41
+use = 42
+activation-status = 43
+channel-type = 44
+colloquial-version = 45
+description = 46
+edition = 47
+entitlement-data-required = 48
+entitlement-key = 49
+generator = 50
+persistent-id = 51
+product = 52
+product-family = 53
+revision = 54
+summary = 55
+unspsc-code = 56
+unspsc-version = 57
+
+multipartnumeric = 1
+multipartnumeric-suffix = 2
+alphanumeric = 3
+decimal = 4
+semver = 16384
+
+tag-creator=1
+software-creator=2
+aggregator=3
+distributor=4
+licensor=5
+maintainer=6
+
+abandon=1
+private=2
+shared=3
+
+ancestor=1
+component=2
+feature=3
+installationmedia=4
+packageinstaller=5
+parent=6
+patches=7
+requires=8
+see-also=9
+supersedes=10
+
+optional=1
+required=2
+recommended=3
+
+
+cose-label = int / tstr
+cose-values = any
+
+$entity-name-type-choice /= text
+
+$corim-id-type-choice /= tstr
+$corim-id-type-choice /= uuid-type
+
+uuid-type = bytes .size 16
+
+
+non-empty<M> = (M) .within ({ + any => any })
+
+
+
+xcorim = #6.525($xcorim-type-choice)
+
+tagged-xcorim-map = #6.526(xcorim-map)
+$xcorim-type-choice /= tagged-xcorim-map
+$xcorim-type-choice /= #6.527(signed-xcorim)
+
+signed-xcorim = #6.18(COSE-Sign1-xcorim)
+
+protected-xcorim-header-map = {
+  xcorim.alg-id => int
+  xcorim.content-type => "application/xcorim-unsigned+cbor"
+  xcorim.issuer-key-id => bstr
+  xcorim.meta => bstr .cbor xcorim-meta-map
+  * cose-label => cose-values
+}
+
+xcorim-meta-map = {
+  xcorim.signer => xcorim-signer-map
+  xcorim.timestamp => time
+}
+
+xcorim-signer-map = {
+  xcorim.signer-name => $entity-name-type-choice
+  ? xcorim.signer-uri => uri
+  * $$xcorim-signer-map-extension
+}
+
+xcorim-entity-map = {
+  xcorim.entity-name => $entity-name-type-choice
+  ? xcorim.reg-id => uri
+  xcorim.role => $xcorim-role-type-choice
+  * $$xcorim-entity-map-extension
+}
+
+$xcorim-role-type-choice /= xcorim.deny-list-creator
+
+unprotected-xcorim-header-map = {
+  * cose-label => cose-values
+}
+
+COSE-Sign1-xcorim = [
+  protected: bstr .cbor protected-xcorim-header-map
+  unprotected: unprotected-xcorim-header-map
+  payload: bstr .cbor tagged-xcorim-map
+  signature: bstr
+]
+
+xcorim-map = {
+  ? xcorim.entity => [ + xcorim-entity-map ]
+  xcorim.deny-list => [ + $corim-id-type-choice ]
+  * $$xcorim-map-extension
+}
+
+
+xcorim.entity = 0
+xcorim.deny-list = 1
+
+xcorim.signer-name = 0
+xcorim.signer-uri = 1
+
+xcorim.entity-name = 0
+xcorim.role = 1
+xcorim.reg-id = 2
+
+xcorim.deny-list-creator = 1
+
+xcorim.alg-id = 1
+xcorim.content-type = 3
+xcorim.issuer-key-id = 4
+xcorim.meta = 9
+
+xcorim.signer = 0
+xcorim.timestamp = 1
+
+
+
+cose-label = int / tstr
+cose-values = any
+
+$entity-name-type-choice /= text
+
+$corim-id-type-choice /= tstr
+$corim-id-type-choice /= uuid-type
+
+uuid-type = bytes .size 16
+
+
+
