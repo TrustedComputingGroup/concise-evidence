@@ -5,5 +5,5 @@ toc-map = {
   * $$toc-map-extension
 }
 
-$tagged-evidence-type-choice =/ #6.571(concise-evidence-map)
+$tagged-evidence-type-choice /= #6.571(concise-evidence-map)
 ; additional forms of evidence added here
