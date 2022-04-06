@@ -18,7 +18,7 @@ SPDM_FRAGS += concise-evidence.cddl
 SPDM_FRAGS += toc-code-points.cddl
 SPDM_FRAGS += $(CORIM_DEPS)
 
-SPDM_EXAMPLES := $(wildcard examples/spdm-*.diag)
+SPDM_EXAMPLES := $(wildcard examples/*.diag)
 
 $(eval $(call cddl_check_template,spdm,$(SPDM_FRAGS),$(SPDM_EXAMPLES)))
 
