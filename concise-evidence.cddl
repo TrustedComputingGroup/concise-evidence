@@ -16,8 +16,10 @@ ev-triples-map = non-empty< {
 
 ev-coswid-triple-record = [ 
   environment-map, 
-  non-empty< { 
+  ev-coswid-evidence-map 
+]
+
+ev-coswid-evidence-map = non-empty< { 
     ce.coswid-tag-ids => [ * concise-swid-tag-id ], 
     ? ce.coswid-evidence => evidence-entry 
-  } > 
-]
+} > 
