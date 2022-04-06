@@ -5,19 +5,19 @@ concise-evidence-map = {
 $evidence-id-type-choice /= tagged-uuid-type
 ; additional evidence identifier types may be added here
 
-ev-triples-map = non-empty<{
+ev-triples-map = non-empty< {
   ? ce.evidence-triples => [ + reference-triple-record ]
   ? ce.identity-triples => [ + identity-triple-record ]
   ? ce.dependency-triples => [ + domain-dependency-triple-record ]
-	? ce.domain-membership-triples => [ + domain-membership-triple-record ]
+  ? ce.domain-membership-triples => [ + domain-membership-triple-record ]
   ? ce.coswid-triples => [ + ev-coswid-triple-record ]
   * $$ev-triples-map-extension
-}> 
+} > 
 
 ev-coswid-triple-record = [ 
   environment-map, 
-  non-empty<{ 
+  non-empty< { 
     ce.coswid-tag-ids => [ * concise-swid-tag-id ], 
     ? ce.coswid-evidence => evidence-entry 
-  }> 
+  } > 
 ]
