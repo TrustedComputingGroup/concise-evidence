@@ -2,7 +2,7 @@ concise-evidence-map = {
   ce.ev-triples => ev-triples-map
   * $$concise-evidence-map-extension
 }
-$evidence-id-type-choice =/ tagged-uuid-type
+$evidence-id-type-choice /= tagged-uuid-type
 ; additional evidence identifier types may be added here
 
 ev-triples-map = non-empty<{
