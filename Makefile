@@ -1,5 +1,7 @@
 .DEFAULT_GOAL := check
 
+SHELL := /bin/bash
+
 CORIM_DIR := ietf-corim-cddl
 CORIM_DEPS := $(foreach ca,comid,$(CORIM_DIR)/$(ca)-autogen.cddl)
 
