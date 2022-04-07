@@ -5,7 +5,8 @@ ce.ev-triples = 0
 ce.evidence-triples = 0
 ce.identity-triples = 1
 ce.dependency-triples = 2
-ce.swid-triples = 3
+ce.domain-membership-triples = 3
+ce.swid-triples = 4
 
 ; ev-coswid-evidence-map code points
 ce.coswid-tag-ids = 0
