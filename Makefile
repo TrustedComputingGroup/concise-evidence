@@ -12,7 +12,7 @@ include $(CORIM_DIR)/funcs.mk
 
 $(CORIM_DEPS): ; $(MAKE) -C $(CORIM_DIR)
 
-check:: check-spdm
+check:: check-spdm check-spdm-examples
 
 SPDM_FRAGS := spdm-toc.cddl
 SPDM_FRAGS += ce-code-points.cddl
