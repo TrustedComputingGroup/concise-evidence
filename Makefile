@@ -4,6 +4,8 @@ SHELL := /bin/bash
 
 CORIM_DIR := ietf-corim-cddl
 CORIM_DEPS := $(CORIM_DIR)/comid-autogen.cddl
+CORIM_DEPS += $(CORIM_DIR)/corim.cddl
+CORIM_DEPS += $(CORIM_DIR)/corim-code-points.cddl
 
 include $(CORIM_DIR)/tools.mk
 include $(CORIM_DIR)/funcs.mk
