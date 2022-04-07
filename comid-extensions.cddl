@@ -19,6 +19,7 @@ coswid-triple-record = [
   environment-map, ; target environment
   [ + concise-swid-tag-id ] ; reference or associated software
 ]
+concise-swid-tag-id = tag-id
 
 ; DOMAIN-DEPENDENCY-TRIPLE-RECORD
 ;     Predicate: $TD Target domain trust depends on $SD source domain(s)
@@ -42,5 +43,5 @@ $$triples-map-extension //= (
 
 domain-membership-triple-record = [
  $domain-type-choice, ; target domain
- [ + environment-map ] ; member environments
+ [ + environment-map ] ; member environment(s)
 ]
