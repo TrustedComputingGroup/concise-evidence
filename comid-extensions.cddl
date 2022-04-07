@@ -24,7 +24,7 @@ concise-swid-tag-id = tag-id
 ; DOMAIN-DEPENDENCY-TRIPLE-RECORD
 ;     Predicate: $TD Target domain trust depends on $SD source domain(s)
 $$triples-map-extension //= ( 
-? comid.dependency-triples => [ + domain-dependency-triple-record ]
+  ? comid.dependency-triples => [ + domain-dependency-triple-record ]
 )
 
 domain-dependency-triple-record = [
