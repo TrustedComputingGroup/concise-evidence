@@ -2,7 +2,7 @@
 ; CoMID triples-map-extension code points
 comid.dependency-triples = 4
 comid.domain-membership-triples = 5
-comid.coswid-triple = 6
+comid.coswid-triples = 6
 
 ; CoMID measurement-values-map-extension code points
 comid.spdm-indirect = 12
