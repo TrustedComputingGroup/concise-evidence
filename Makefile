@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := check
 
 CORIM_DIR := ietf-corim-cddl
-CORIM_DEPS := $(foreach ca,corim comid xcorim,$(CORIM_DIR)/$(ca)-autogen.cddl)
+CORIM_DEPS := $(foreach ca,comid,$(CORIM_DIR)/$(ca)-autogen.cddl)
 
 include $(CORIM_DIR)/tools.mk
 include $(CORIM_DIR)/funcs.mk
