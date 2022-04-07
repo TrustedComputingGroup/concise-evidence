@@ -13,14 +13,14 @@ index-type = uint
 ;     The target environment $TE is capable of being loaded with software as identified by 
 ;     one or more COSWID tag identifiers $TagID.
 $$triples-map-extension //= ( 
-? comid.coswid-triple => coswid-triple-record 
+  ? comid.coswid-triples => [ + coswid-triple-record ]
 )
 coswid-triple-record = [ environment-map, [ + concise-swid-tag-id ] ]
 
 ; DOMAIN-DEPENDENCY-TRIPLE-RECORD
 ;     Predicate: $TD Target domain trust depends on $SD source domain(s)
 $$triples-map-extension //= ( 
-? comid.dependency-triples => domain-dependency-triple-record 
+? comid.dependency-triples => [ + domain-dependency-triple-record ]
 )
 
 domain-dependency-triple-record = [
@@ -33,7 +33,7 @@ $domain-type-choice /= tagged-uuid-type ; global scope identifier
 ; DOMAIN-MEMBERSHIP-TRIPLE-RECORD
 ; Predicate: $TD Target domain has member environment(s) $EV
 $$triples-map-extension //= ( 
-? comid.domain-membership-triples => domain-membership-triple-record 
+? comid.domain-membership-triples => [ + domain-membership-triple-record ]
 )
 
 domain-membership-triple-record = [
