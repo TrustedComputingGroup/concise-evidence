@@ -30,10 +30,7 @@
           },
           / measurement-map / [ {
            / comid.mval / 1 : {
-             / raw-value-group /
-               / comid.raw-value / 4 : 560(h'0000000000000000'),
-               / comid.raw-value-mask / 5 : h'FFFFFFFF00000000'
-             / comid.spdm-indirect | 12 : [ 1 2 3 4 5 ] /
+             / comid.spdm-indirect / 12 : [ 1, 2, 3, 4, 5 ] / extends measurement-values-map /
            }
           } ]
         ]

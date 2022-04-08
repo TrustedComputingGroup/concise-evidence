@@ -2,7 +2,7 @@
   / comid.tag-identity / 1 : {
     / comid.tag-id / 0 : h'1EACD596F4A34FB699BFAEB58E0A4E47'
   },
-  / comid.entity / 2 : [ {
+  / comid.entities / 2 : [ {
     / comid.entity-name / 0 : "FPGA Designs-R-Us",
     / comid.reg-id / 1 : 32("https://fpgadesignsrus.example"),
     / comid.role / 2 : [ 0 ] / tag-creator /
@@ -12,16 +12,16 @@
           / comid.linked-tag-id / 0 : h'97F5A7071C6F438F877A4A020780EBE9',
           / comid.tag-rel / 1 : / comid.supplements / 0
       }
-    ],
+  ],
   / comid.triples / 4 : {
     / comid.domain-membership-triples / 5 : [
-        / domain / 2,
+        [ / domain / 2,
           [
             / environment-map / {
               / ** Layer 3 device state ** /
               / comid.class / 0 : {
                   / comid.class-id / 0 :
-                  / tagged-oid-type / 111(h'6086480186F84D010F0401'), / 2.16.840.1.113741.1.15.4.1 /
+                    / tagged-oid-type / 111(h'6086480186F84D010F0401'), / 2.16.840.1.113741.1.15.4.1 /
                   / comid.vendor / 1 : "fpgadesignsrus.example",
                   / comid.layer / 3 : 2
               }
@@ -43,9 +43,10 @@
                 / comid.vendor / 1 : "fpgadesignsrus.example",
                 / comid.layer / 3 : 2
               }
-            },
-          ],
-        / domain / 3,
+            }
+          ]
+        ],
+        [ / domain / 3,
           [
             / environment-map / {
               / ** Firmware is valid (example assertion) ** /
@@ -62,31 +63,32 @@
                   / tagged-oid-type / 111(h'6086480186F84D010F046302'), / 2.16.840.1.113741.1.15.4.99.2 /
                 / comid.vendor / 1 : "fpgadesignsrus.example"
               }
-            },
+            }
           ]
-      ], 
+        ]
+      ],
     / comid.reference-triples / 0 : [
       [
         / environment-map / {
           / ** Layer 3 device state ** /
           / comid.class / 0 : {
-              / comid.class-id / 0 :
+            / comid.class-id / 0 :
               / tagged-oid-type / 111(h'6086480186F84D010F0401'), / 2.16.840.1.113741.1.15.4.1 /
-              / comid.vendor / 1 : "fpgadesignsrus.example",
-              / comid.layer / 3 : 2
+            / comid.vendor / 1 : "fpgadesignsrus.example",
+            / comid.layer / 3 : 2
           }
         },
         [
-        / measurement-map / {
+          / measurement-map / {
             / comid.mval / 1 : {
               / raw-value-group /
               / comid.raw-value / 4 : 560(h'0000000000000000'),
               / comid.raw-value-mask / 5 : h'FFFFFFFF00000000'
             },
             / comid.authorized-by / 2 : [
-              / tagged-pkix-base64-key-type / 554('base64_fpgadesignsrus_key_y')
+              / tagged-pkix-base64-key-type / 554("base64_fpgadesignsrus_key_y")
             ]
-          },
+          }
         ]
       ],
       [
@@ -94,23 +96,23 @@
           / ** Layer 2 design (IO descriptor) hash ** /
           / comid.class / 0 : {
             / comid.class-id / 0 :
-            / tagged-oid-type / 111(h'6086480186F84D010F0402'), / 2.16.840.1.113741.1.15.4.2 /
+              / tagged-oid-type / 111(h'6086480186F84D010F0402'), / 2.16.840.1.113741.1.15.4.2 /
             / comid.vendor / 1 : "fpgadesignsrus.example",
             / comid.layer / 3 : 2
           }
         },
         [
-        / measurement-map / {
-          / comid.mval / 1 : {
-            / comid.digests / 2 : [
-            [
-              / hash-alg-id / 7, / SHA384 /
-              / hash-value / h'3FE18ECA4053879E017EF5EB7A3E5157659C5F9BB15B7D09959B8B8647822A4CC21C3AA6721CEF87F5BFA53495DB0833'
-            ]
-            ]
-          },
-          / comid.authorized-by / 2 : [
-              / tagged-pkix-base64-key-type / 554('base64_fpgadesignsrus_key_y')
+          / measurement-map / {
+            / comid.mval / 1 : {
+              / comid.digests / 2 : [
+                [
+                / hash-alg-id / 7, / SHA384 /
+                / hash-value / h'3FE18ECA4053879E017EF5EB7A3E5157659C5F9BB15B7D09959B8B8647822A4CC21C3AA6721CEF87F5BFA53495DB0833'
+                ]
+              ]
+            },
+            / comid.authorized-by / 2 : [
+              / tagged-pkix-base64-key-type / 554("base64_fpgadesignsrus_key_y")
             ]
           }
         ]
@@ -126,7 +128,7 @@
           }
         },
         [
-        / measurement-map / {
+          / measurement-map / {
             / comid.mval / 1 : {
               / comid.digests / 2 : [
                 [
@@ -136,7 +138,7 @@
               ]
             },
             / comid.authorized-by / 2 : [
-              / tagged-pkix-base64-key-type / 554('base64_fpgadesignsrus_key_y')
+              / tagged-pkix-base64-key-type / 554("base64_fpgadesignsrus_key_y")
             ]
           }
         ]
@@ -148,21 +150,20 @@
             / comid.class-id / 0 :
               / tagged-oid-type / 111(h'6086480186F84D010F046301'), / 2.16.840.1.113741.1.15.4.99.1 /
             / comid.vendor / 1 : "fpgadesignsrus.example"
-          }
-          },
-          / measurement-map /
-          [
-            {
-              / comid.mval / 1 : {
+            }
+        },
+        [
+          / measurement-map / {
+            / comid.mval / 1 : {
               / raw-value-group /
                 / comid.raw-value / 4 : 560(h'000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'),
                 / comid.raw-value-mask / 5 : h'466224343D681802C1506BBED7D7F00B969BADDD6346E4F2E7CE146692996F22A45814DE81D248F583B65F817B5FCEAB'
               },
             / comid.authorized-by / 2 : [
-                / tagged-pkix-base64-key-type / 554('base64_fpgadesignsrus_key_z')
-              ]
-            }
-          ]
+              / tagged-pkix-base64-key-type / 554("base64_fpgadesignsrus_key_z")
+            ]
+          }
+        ]
       ]
     ],
     / comid.endorsed-triples / 1 : [
@@ -183,7 +184,7 @@
                 / comid.raw-value-mask / 5 : h'FFFFFFFF00000000'
             },
             / comid.authorized-by / 2 : [
-              / tagged-pkix-base64-key-type / 554('base64_fpgadesignsrus_key_z')
+              / tagged-pkix-base64-key-type / 554("base64_fpgadesignsrus_key_z")
             ]
           } 
         ]
