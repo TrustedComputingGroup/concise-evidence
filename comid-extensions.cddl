@@ -16,7 +16,7 @@ $$triples-map-extension //= (
   ? comid.coswid-triples => [ + coswid-triple-record ]
 )
 coswid-triple-record = [ 
-  environment-map, ; target environment
+  environment-map ; target environment
   [ + concise-swid-tag-id ] ; reference or associated software
 ]
 concise-swid-tag-id = tag-id
@@ -28,7 +28,7 @@ $$triples-map-extension //= (
 )
 
 domain-dependency-triple-record = [
- $domain-type-choice, ; target domain
+ $domain-type-choice ; target domain
  [ + $domain-type-choice ] ; dependant domain(s)
 ]
 $domain-type-choice /= uint ; local scope identifier
@@ -42,6 +42,6 @@ $$triples-map-extension //= (
 )
 
 domain-membership-triple-record = [
- $domain-type-choice, ; target domain
+ $domain-type-choice ; target domain
  [ + environment-map ] ; member environment(s)
 ]
