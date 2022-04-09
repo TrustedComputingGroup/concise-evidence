@@ -2,7 +2,7 @@
      / comid.tag-identity / 1 : {
       / comid.tag-id / 0 : h'AF1CD895BE784ADBB7E9ADD44A65ABF3'
      },
-     / comid.entity / 2 : [ {
+     / comid.entities / 2 : [ {
       / comid.entity-name / 0 : "Firmware MFG Inc.",
       / comid.reg-id / 1 : 32("https://fwmfginc.example"),
       / comid.role / 2 : [ 0 ] / tag-creator /
@@ -62,7 +62,7 @@
                 ]
               },
               / comid.authorized-by / 2 : [
-                / tagged-pkix-base64-key-type / 554('base64_intel_key_x')
+                / tagged-pkix-base64-key-type / 554("base64_intel_key_x")
               ]
             }
           ]
@@ -89,7 +89,7 @@
                 ]
               },
               / comid.authorized-by / 2 : [
-                / tagged-pkix-base64-key-type / 554('base64_intel_key_x')
+                / tagged-pkix-base64-key-type / 554("base64_intel_key_x")
               ]
             }
           ]
@@ -113,7 +113,7 @@
                   / comid.raw-value-mask / 5 : h'FFFFFFFF00000000'
               },    
               / comid.authorized-by / 2 : [
-                  / tagged-pkix-base64-key-type / 554('base64_intel_key_x')
+                  / tagged-pkix-base64-key-type / 554("base64_intel_key_x")
               ]
             } 
           ]
