@@ -2,7 +2,7 @@
   / comid.tag-identity / 1 : {
     / comid.tag-id / 0 : h'1EACD596F4A34FB699BFAEB58E0A4E48'
   },
-  / comid.entity / 2 : [ {
+  / comid.entities / 2 : [ {
     / comid.entity-name / 0 : "OEM-A",
     / comid.reg-id / 1 : 32("https://oem-a.example"),
     / comid.role / 2 : [ 0 ] / tag-creator /
