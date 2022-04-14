@@ -14,7 +14,8 @@
         [
           / domain / 1,
           [
-            {
+            / environment-map / {
+              / ** Hash of layer 0 firmware ** /
               / comid.class / 0 : {
                 / comid.vendor / 1 : "fwmfginc.example",
                 / comid.model /  2 : "fwY_n5x",
@@ -22,7 +23,17 @@
                 / comid.index /  4 : 0
               }
             },
-            {
+            / environment-map / {
+              / ** Hash of layer 1 firmware ** /
+              / comid.class / 0 : {
+                / comid.vendor / 1 : "fwmfginc.example",
+                / comid.model /  2 : "fwX_n5x",
+                / comid.layer /  3 : 1,
+                / comid.index /  4 : 0
+              }
+            },
+            / environment-map / {
+              / ** Firmware is valid (example) ** /
               / comid.class / 0 : {
                 / comid.class-id / 0 :
                   / tagged-oid-type / 111(h'6086480186F84D010F046301'), / 2.16.840.1.113741.1.15.4.99.1 /
