@@ -6,7 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: checkout repo
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
     - name: install tools
       run: gem install --user-install cbor-diag cddl
     - name: set up PATH
