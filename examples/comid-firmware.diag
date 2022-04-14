@@ -1,42 +1,35 @@
 / concise-mid-tag / {
-     / comid.tag-identity / 1 : {
-      / comid.tag-id / 0 : h'AF1CD895BE784ADBB7E9ADD44A65ABF3'
-     },
-     / comid.entities / 2 : [ {
+  / comid.tag-identity / 1 : {
+    / comid.tag-id / 0 : h'AF1CD895BE784ADBB7E9ADD44A65ABF3'
+  },
+  / comid.entities / 2 : [
+    {
       / comid.entity-name / 0 : "Firmware MFG Inc.",
       / comid.reg-id / 1 : 32("https://fwmfginc.example"),
       / comid.role / 2 : [ 0 ] / tag-creator /
-     } ],
-     / comid.triples / 4 : {
+      }
+    ],
+    / comid.triples / 4 : {
       / comid.domain-membership-triples / 5 : [
-        / domain / 1,
         [
-          / environment-map / {
-              / ** Hash of layer 0 firmware ** /
+          / domain / 1,
+          [
+            {
               / comid.class / 0 : {
-                  / comid.vendor / 1 : "fwmfginc.example",
-                  / comid.model / 2 : "fwY_n5x",
-                  / comid.layer / 3 : 0,
-                  / comid.index / 4 : 0
+                / comid.vendor / 1 : "fwmfginc.example",
+                / comid.model /  2 : "fwY_n5x",
+                / comid.layer /  3 : 0,
+                / comid.index /  4 : 0
               }
-          },
-          / environment-map / {
-              / ** Hash of layer 1 firmware ** /
+            },
+            {
               / comid.class / 0 : {
-                  / comid.vendor / 1 : "fwmfginc.example",
-                  / comid.model / 2 : "fwX_n5x",
-                  / comid.layer / 3 : 1,
-                  / comid.index / 4 : 0
-              }
-          },
-          / environment-map / {
-          / ** Firmware is valid (example) ** /
-            / comid.class / 0 : {
-              / comid.class-id / 0 :
-                / tagged-oid-type / 111(h'6086480186F84D010F046301'), / 2.16.840.1.113741.1.15.4.99.1 /
+                / comid.class-id / 0 :
+                  / tagged-oid-type / 111(h'6086480186F84D010F046301'), / 2.16.840.1.113741.1.15.4.99.1 /
                 / comid.vendor / 1 : "fwmfginc.example"
+              }
             }
-          }
+          ]
         ]
       ],
       / comid.reference-triples / 0 : [

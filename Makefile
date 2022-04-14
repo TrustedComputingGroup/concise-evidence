@@ -27,13 +27,11 @@ SPDM_EXAMPLES := $(wildcard examples/ce-*.diag) # concise-evidence example filen
 
 $(eval $(call cddl_check_template,spdm,$(SPDM_FRAGS),$(SPDM_EXAMPLES)))
 
-
 COMID_X_FRAGS := $(CORIM_DIR)/comid-autogen.cddl
 COMID_X_FRAGS += comid-extensions.cddl
 COMID_X_FRAGS += comid-extn-code-points.cddl
 
-
-COMID_X_EXAMPLES := $(wildcard examples/comid-*.diag) # conscise-mid-tag example filenames have 'comid-' prefix
+COMID_X_EXAMPLES := $(wildcard examples/comid-*.diag) # concise-mid-tag example filenames have 'comid-' prefix
 
 $(eval $(call cddl_check_template,comid,$(COMID_X_FRAGS),$(COMID_X_EXAMPLES)))
 
