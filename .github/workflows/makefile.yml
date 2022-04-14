@@ -1,0 +1,15 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: install tools
+      run: gem install --user-install cbor-diag cddl
+    - name: set up PATH
+      run: echo "$(gem env gempath | cut -d':' -f1)/bin" >> $GITHUB_PATH
+    - name: assemble and test
+      run: make check
