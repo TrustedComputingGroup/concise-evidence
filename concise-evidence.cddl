@@ -21,6 +21,7 @@ ev-coswid-triple-record = [
 
 ev-coswid-evidence-map = non-empty< { 
     ? ce.coswid-tag-ids => [ + concise-swid-tag-id ], 
-    ? ce.coswid-evidence => evidence-entry 
+    ? ce.coswid-evidence => evidence-entry,
+    ? ce.authorized-by => [ + $crypto-key-type-choice ] ; see comid schema
 } > 
 concise-swid-tag-id = tag-id
