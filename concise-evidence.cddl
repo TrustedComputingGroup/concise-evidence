@@ -22,5 +22,4 @@ ev-coswid-triple-record = [
 ev-coswid-evidence-map = non-empty< { 
     ? ce.coswid-tag-ids => [ + concise-swid-tag-id ], 
     ? ce.coswid-evidence => evidence-entry 
-} > 
-concise-swid-tag-id = tag-id
+} >
