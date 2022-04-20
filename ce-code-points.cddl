@@ -11,3 +11,4 @@ ce.coswid-triples = 4
 ; ev-coswid-evidence-map code points
 ce.coswid-tag-ids = 0
 ce.coswid-evidence = 1
+ce.authorized-by = 2
