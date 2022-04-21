@@ -2,7 +2,7 @@
   / spdm.tagged-evidence / 0 : [
     571( {
       / ce.ev-triples / 0 : {
-        / ce.coswid-triples / 0 : [
+        / ce.coswid-triples / 4 : [
           [ /** ev-coswid-triple-record **/
             / environment-map / {
               / comid.class / 0 : {
