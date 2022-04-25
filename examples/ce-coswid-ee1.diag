@@ -43,15 +43,15 @@
   / spdm.rim-locators / 1 : [
     / corim-locator-map / {
       / ** link to reference coswids ** /
-      / corim.href / 0 : 32("https://rims.example.com/path/to/reference.coswid")
+      / corim.href / 0 : 32("https://ref-sw.example.com/path/to/reference.corim")
     },
     / corim-locator-map / {
       / ** link to reference manifest ** /
-      / corim.href / 0 : 32("https://rims.example.com/path/to/reference.rim")
+      / corim.href / 0 : 32("https://ref-hw.example.com/path/to/reference.corim")
     },
     / corim-locator-map / {
       / ** link to manifest revocation list ** /
-      / corim.href / 0 : 32("https://rims.example.com/path/to/revocation.xrim")
+      / corim.href / 0 : 32("https://rim-revoke.example.com/path/to/revocation.xcorim")
     }
   ]
 } )

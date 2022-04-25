@@ -1,0 +1,23 @@
+/ spdm-toc / 570( {
+  / spdm.tagged-evidence / 0 : [
+    571( {
+      / ce.ev-triples / 0 : {
+        / ce.dependency-triples / 2 : [
+          [ 3, [ 2, "layer 2 annex" ] ],
+          [ 2, [ 1, "layer 1 extension" ] ],
+          [ 1, [ "XYZ_Root-of-trust" ]]
+        ]
+      }
+    } )
+  ],
+  / spdm-rim-locators / 1 : [
+    / corim-locator-map / {
+      / ** link to reference manifest ** /
+      / corim.href / 0 : 32("https://refs.example.com/path/to/reference.corim")
+    },
+    / corim-locator-map / {
+      / ** link to manifest revocation list ** /
+      / corim.href / 0 : 32("https://rim-revoke.example.com/path/to/revocation.xcorim")
+    }
+  ]
+} )
