@@ -105,7 +105,7 @@
            / comid.class / 0 : {
              / ** Firmware is valid (example) ** /
              / comid.class-id / 0 :
-              / tagged-oid-type / 111(h'6086480186F84D010F046301'), / 2.16.840.1.113741.1.15.4.99.1 /
+              / tagged-oid-type / 111(h'0606517B010F046301'), / 2.1.123.1.15.4.99.1 /
               / comid.vendor / 1 : "fwmfginc.example"
            }
           },
