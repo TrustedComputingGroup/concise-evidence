@@ -3,8 +3,9 @@
     571( {
       / ce.ev-triples / 0 : {
         / ce.dependency-triples / 2 : [
-          [ 3, [ 2, "layer 2 annex" ] ],
-          [ 2, [ 1, "layer 1 extension" ] ],
+          [ 3, [ 2 ] ],
+          [ 2, [ 1, "L1-extension" ] ],
+          [ "L1-extension", [ "XYZ_Root-of-trust" ]],
           [ 1, [ "XYZ_Root-of-trust" ]]
         ]
       }
