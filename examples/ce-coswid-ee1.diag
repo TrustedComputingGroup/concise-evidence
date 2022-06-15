@@ -7,7 +7,7 @@
             / environment-map / {
               / comid.class / 0 : {
                 / comid.class-id / 0 :
-                  / tagged-oid-type / 111(h'6086480186F84D010F046308'), / 2.16.840.1.113741.1.15.4.99.8 /
+                  / tagged-oid-type / 111(h'0606517B010F046308'), / 2.1.123.1.15.4.99.8 /
                   / comid.vendor / 1 : "xyzinc.example"
               }
             },
@@ -43,15 +43,15 @@
   / spdm.rim-locators / 1 : [
     / corim-locator-map / {
       / ** link to reference coswids ** /
-      / corim.href / 0 : 32("https://rims.example.com/path/to/reference.coswid")
+      / corim.href / 0 : 32("https://ref-sw.example.com/path/to/reference.corim")
     },
     / corim-locator-map / {
       / ** link to reference manifest ** /
-      / corim.href / 0 : 32("https://rims.example.com/path/to/reference.rim")
+      / corim.href / 0 : 32("https://ref-hw.example.com/path/to/reference.corim")
     },
     / corim-locator-map / {
       / ** link to manifest revocation list ** /
-      / corim.href / 0 : 32("https://rims.example.com/path/to/revocation.xrim")
+      / corim.href / 0 : 32("https://rim-revoke.example.com/path/to/revocation.xcorim")
     }
   ]
 } )
