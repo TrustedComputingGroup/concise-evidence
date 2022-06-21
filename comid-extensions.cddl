@@ -7,6 +7,15 @@ $$measurement-values-map-extension //= (
 index-type = uint
 
 ;
+; Flags map extensions
+;
+$$flags-map-extension //= (
+  comid.operational-flag-runtime-meas => bool
+  comid.operational-flag-immutable-meas => bool
+  comid.operational-flag-tcb-meas => bool
+)
+
+;
 ; Triples map extensions
 ;
 ; COSWID-TRIPLE-RECORD
