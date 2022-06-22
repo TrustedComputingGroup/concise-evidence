@@ -6,3 +6,8 @@ comid.coswid-triples = 6
 
 ; CoMID measurement-values-map-extension code points
 comid.spdm-indirect = 12
+
+; CoMID flags-map-extension code points
+comid.operational-flag-runtime-meas = 6
+comid.operational-flag-immutable-meas = 7
+comid.operational-flag-tcb-meas = 8
