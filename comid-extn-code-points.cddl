@@ -11,3 +11,9 @@ comid.spdm-indirect = 12
 comid.operational-flag-runtime-meas = 6
 comid.operational-flag-immutable-meas = 7
 comid.operational-flag-tcb-meas = 8
+
+; SPDM spdm indirect code points
+spdm.index = 0
+spdm.measurement-type = 1
+spdm.measurement-data = 2
+spdm.measurement-digest = 3
