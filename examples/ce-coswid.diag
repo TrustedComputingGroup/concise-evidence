@@ -7,7 +7,7 @@
             / environment-map / {
               / comid.class / 0 : {
                 / comid.class-id / 0 :
-                  / tagged-oid-type / 111(h'6086480186F84D010F046308'), / 2.16.840.1.113741.1.15.4.99.8 /
+                  / tagged-oid-type / 111(h'060C6086480186F84D010F046308'), / 2.16.840.1.113741.1.15.4.99.8 /
                   / comid.vendor / 1 : "xyzinc.example"
               }
             },

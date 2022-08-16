@@ -21,7 +21,7 @@
               / ** Layer 2 device state ** /
               / comid.class / 0 : {
                   / comid.class-id / 0 :
-                    / tagged-oid-type / 111(h'0606517B010F0401'), / 2.1.123.1.15.4.1 /
+                    / tagged-oid-type / 111(h'0607517B010F0401'), / 2.1.123.1.15.4.1 /
                   / comid.vendor / 1 : "fpgadesignsrus.example",
                   / comid.layer / 3 : 2
               }
@@ -30,7 +30,7 @@
               / ** Layer 2 design (IO descriptor) hash ** /
               / comid.class / 0 : {
                 / comid.class-id / 0 :
-                  / tagged-oid-type / 111(h'0606517B010F0402'), / 2.1.123.1.15.4.2 /
+                  / tagged-oid-type / 111(h'0607517B010F0402'), / 2.1.123.1.15.4.2 /
                 / comid.vendor / 1 : "fpgadesignsrus.example",
                 / comid.layer / 3 : 2
               }
@@ -39,7 +39,7 @@
               / ** Layer 2 design (CORE descriptor) hash ** /
               / comid.class / 0 : {
                 / comid.class-id / 0 :
-                  / tagged-oid-type / 111(h'0606517B010F0403'), / 2.1.123.1.15.4.3 /
+                  / tagged-oid-type / 111(h'0607517B010F0403'), / 2.1.123.1.15.4.3 /
                 / comid.vendor / 1 : "fpgadesignsrus.example",
                 / comid.layer / 3 : 2
               }
@@ -52,7 +52,7 @@
               / ** ISV App module 1 ** /
               / comid.class / 0 : {
                 / comid.class-id / 0 :
-                  / tagged-oid-type / 111(h'0606517B010F046301'), / 2.1.123.1.15.4.99.1 /
+                  / tagged-oid-type / 111(h'0607517B010F046301'), / 2.1.123.1.15.4.99.1 /
                 / comid.vendor / 1 : "ISV-App.example"
               }
             },
@@ -60,7 +60,7 @@
               / ** ISV App module 2 ** /
               / comid.class / 0 : {
                 / comid.class-id / 0 :
-                  / tagged-oid-type / 111(h'0606517B010F046302'), / 2.1.123.1.15.4.99.2 /
+                  / tagged-oid-type / 111(h'0607517B010F046302'), / 2.1.123.1.15.4.99.2 /
                 / comid.vendor / 1 : "ISV-App.example"
               }
             }
@@ -73,7 +73,7 @@
           / ** Layer 3 device state ** /
           / comid.class / 0 : {
             / comid.class-id / 0 :
-              / tagged-oid-type / 111(h'0606517B010F0401'), / 2.1.123.1.15.4.1 /
+              / tagged-oid-type / 111(h'0607517B010F0401'), / 2.1.123.1.15.4.1 /
             / comid.vendor / 1 : "fpgadesignsrus.example",
             / comid.layer / 3 : 2
           }
@@ -96,7 +96,7 @@
           / ** Layer 2 design (IO descriptor) hash ** /
           / comid.class / 0 : {
             / comid.class-id / 0 :
-              / tagged-oid-type / 111(h'0606517B010F0402'), / 2.1.123.1.15.4.2 /
+              / tagged-oid-type / 111(h'0607517B010F0402'), / 2.1.123.1.15.4.2 /
             / comid.vendor / 1 : "fpgadesignsrus.example",
             / comid.layer / 3 : 2
           }
@@ -122,7 +122,7 @@
           / ** Layer 2 design (CORE descriptor) hash ** /
           / comid.class / 0 : {
             / comid.class-id / 0 :
-              / tagged-oid-type / 111(h'0606517B010F0403'), / 2.1.123.1.15.4.3 /
+              / tagged-oid-type / 111(h'0607517B010F0403'), / 2.1.123.1.15.4.3 /
             / comid.vendor / 1 : "fpgadesignsrus.example",
             / comid.layer / 3 : 2
           }
@@ -148,7 +148,7 @@
           / ** Firmware is valid (example assertion) ** /
           / comid.class / 0 : {
             / comid.class-id / 0 :
-              / tagged-oid-type / 111(h'0606517B010F046301'), / 2.1.123.1.15.4.99.1 /
+              / tagged-oid-type / 111(h'0607517B010F046301'), / 2.1.123.1.15.4.99.1 /
             / comid.vendor / 1 : "fpgadesignsrus.example"
             }
         },
@@ -172,7 +172,7 @@
           / ** Design is valid (example assertion) ** /
             / comid.class / 0 : {
               / comid.class-id / 0 :
-                / tagged-oid-type / 111(h'0606517B010F046302'), / 2.1.123.1.15.4.99.2 /
+                / tagged-oid-type / 111(h'0607517B010F046302'), / 2.1.123.1.15.4.99.2 /
               / comid.vendor / 1 : "fpgadesignsrus.example"
             }
         },
