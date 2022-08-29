@@ -15,10 +15,7 @@
               / measurement-map / {
                 / comid.mval / 1 : {
                   / comid.spdm-indirect / 12 : / extends measurement-values-map / {
-                    / spdm.index / 0 : [ 1, 2, 3, 4, 5 ],
-                    / spdm.measurement-type / 1 : h'07',
-                    / spdm.measurement-data / 2 : h'0123456789',
-                    / spdm.measurement-digest / 3 : [ 1, h'FFFEFDFCFBFAF9F8F7F6F5F4F3F2F1F0' ]
+                    / spdm.index / 0 : [ 1, 2, 3, 4, 5 ]
                   },
                   / comid.digests / 2 : [ [ 1, h'FFFEFDFCFBFAF9F8F7F6F5F4F3F2F1F0'] ],
                   / comid.raw-value / 4 : 560(h'0123456789')
