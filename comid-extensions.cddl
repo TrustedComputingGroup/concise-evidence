@@ -2,9 +2,15 @@
 ; Measurement Values map extensions
 ;
 $$measurement-values-map-extension //= (
-  comid.spdm-indirect => [ + index-type ]
+  comid.spdm-indirect => spdm-indirect-map
 )
-index-type = uint
+spdm-indirect-map = {
+  spdm.index => [ + uint ]
+  ;? spdm.measurement-type => bstr .size 1
+  ;? spdm.measurement-data => bstr
+  ;? spdm.measurement-digest => hash-entry
+  * $$spdm-indirect-map-extension
+}
 
 ;
 ; Flags map extensions
