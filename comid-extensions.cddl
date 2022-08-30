@@ -6,9 +6,6 @@ $$measurement-values-map-extension //= (
 )
 spdm-indirect-map = {
   spdm.index => [ + uint ]
-  ;? spdm.measurement-type => bstr .size 1
-  ;? spdm.measurement-data => bstr
-  ;? spdm.measurement-digest => hash-entry
   * $$spdm-indirect-map-extension
 }
 
