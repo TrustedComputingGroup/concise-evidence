@@ -8,7 +8,6 @@ CORIM_DEPS :=
 CORIM_DEPS += $(CORIM_DIR)/comid-autogen.cddl
 CORIM_DEPS += $(CORIM_DIR)/corim.cddl
 CORIM_DEPS += $(CORIM_DIR)/corim-code-points.cddl
-#CORIM_DEPS += $(CORIM_DIR)/comid-autogen.cddl # build fails if in this sequence
 
 include $(CORIM_DIR)/tools.mk
 include $(CORIM_DIR)/funcs.mk
@@ -18,29 +17,23 @@ $(CORIM_DEPS): ; $(MAKE) -C $(CORIM_DIR)
 check:: check-spdm check-spdm-examples
 check:: check-comidx check-comidx-examples
 
-SPDM_FRAGS :=
-#SPDM_FRAGS := $(CORIM_DEPS) # build fails if in this sequence
+SPDM_FRAGS := spdm-start.cddl
 SPDM_FRAGS += spdm-toc.cddl
 SPDM_FRAGS += toc-code-points.cddl
 SPDM_FRAGS += concise-evidence.cddl
 SPDM_FRAGS += ce-code-points.cddl
-#SPDM_FRAGS += $(CORIM_DEPS) # build fails if in this sequence
 SPDM_FRAGS += comid-extensions.cddl
 SPDM_FRAGS += comid-extn-code-points.cddl
 SPDM_FRAGS += $(CORIM_DEPS)
-#SPDM_FRAGS += $(COMID_X_FRAGS) # build fails if in this sequence
 
 SPDM_EXAMPLES := $(wildcard examples/ce-*.diag) # concise-evidence example filenames have 'ce-' prefix
 
 $(eval $(call cddl_check_template,spdm,$(SPDM_FRAGS),$(SPDM_EXAMPLES)))
 
-#COMID_X_FRAGS := $(SPDM_FRAGS)
-COMID_X_FRAGS :=
+COMID_X_FRAGS := comid-x-start.cddl
 COMID_X_FRAGS += $(CORIM_DEPS)
 COMID_X_FRAGS += comid-extensions.cddl
 COMID_X_FRAGS += comid-extn-code-points.cddl
-#COMID_X_FRAGS += $(CORIM_DEPS) # build fails if in this sequence
-
 
 COMID_X_EXAMPLES := $(wildcard examples/comid-*.diag) # concise-mid-tag example filenames have 'comid-' prefix
 
