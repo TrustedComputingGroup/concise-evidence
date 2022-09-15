@@ -16,6 +16,7 @@ $(CORIM_DEPS): ; $(MAKE) -C $(CORIM_DIR)
 
 check:: check-spdm check-spdm-examples
 check:: check-comidx check-comidx-examples
+check:: check-ce check-ce-examples
 
 SPDM_FRAGS := spdm-start.cddl
 SPDM_FRAGS += spdm-toc.cddl
