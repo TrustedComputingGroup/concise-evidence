@@ -2,7 +2,8 @@
 
 SHELL := /bin/bash
 
-CORIM_DIR := ietf-corim-cddl
+CORIM_DIR_OLD := ietf-corim-cddl
+CORIM_DIR := draft-ietf-rats-corim/cddl
 
 CORIM_DEPS :=
 CORIM_DEPS += $(CORIM_DIR)/comid-autogen.cddl
