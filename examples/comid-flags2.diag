@@ -32,15 +32,11 @@
             / measurement-map / {
               / comid.mval / 1 : {
                 / comid.flags / 3 : { 
-                  / comid.operational-flag-secure / 0 : true,
-                  / comid.operational-flag-runtime-meas / 6 : false,
-                  / comid.operational-flag-immutable-meas / 7 : true,
-                  / comid.operational-flag-tcb-meas / 8 : true
+                  / flag-secure / 0 : true,
+                  / flag-runtime-meas / 6 : false,
+                  / flag-tcb-meas / 8 : true
                 } 
-              },
-              / comid.authorized-by / 2 : [
-                / tagged-pkix-base64-key-type / 554("base64_key_X")
-              ]
+              }
             }
           ]
         ]
