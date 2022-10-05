@@ -6,7 +6,6 @@ CORIM_DIR_OLD := ietf-corim-cddl
 CORIM_DIR := draft-ietf-rats-corim/cddl
 
 CORIM_DEPS :=
-#CORIM_DEPS += $(CORIM_DIR)/comid-autogen.cddl
 CORIM_DEPS += $(CORIM_DIR)/attest-key-triple-record.cddl
 CORIM_DEPS += $(CORIM_DIR)/class-id-type-choice.cddl
 CORIM_DEPS += $(CORIM_DIR)/class-map.cddl
