@@ -2,10 +2,10 @@
 ; Measurement Values map extensions
 ;
 $$measurement-values-map-extension //= (
-  comid.spdm-indirect => spdm-indirect-map
+  &(comid.spdm-indirect: 12) => spdm-indirect-map
 )
 spdm-indirect-map = {
-  spdm.index => [ + uint ]
+  &(spdm.index: 0) => [ + uint ]
   * $$spdm-indirect-map-extension
 }
 
@@ -13,47 +13,7 @@ spdm-indirect-map = {
 ; Flags map extensions
 ;
 $$flags-map-extension //= (
-  comid.operational-flag-runtime-meas => bool
-  comid.operational-flag-immutable-meas => bool
-  comid.operational-flag-tcb-meas => bool
+  &(runtime-meas: 6) => bool
+  &(immutable-meas: 7) => bool
+  &(tcb-meas: 8) => bool
 )
-
-;
-; Triples map extensions
-;
-; COSWID-TRIPLE-RECORD
-;     The target environment $TE is capable of being loaded with software as identified by 
-;     one or more COSWID tag identifiers $TagID.
-$$triples-map-extension //= ( 
-  comid.coswid-triples => [ + coswid-triple-record ]
-)
-coswid-triple-record = [ 
-  environment-map ; target environment
-  [ + concise-swid-tag-id ] ; reference or associated software
-]
-concise-swid-tag-id = text / bstr .size 16
-
-; DOMAIN-DEPENDENCY-TRIPLE-RECORD
-;     Predicate: $TD Target domain trust depends on $SD source domain(s)
-$$triples-map-extension //= ( 
-  comid.dependency-triples => [ + domain-dependency-triple-record ]
-)
-
-domain-dependency-triple-record = [
-  $domain-type-choice ; target domain
-  [ + $domain-type-choice ] ; dependant domain(s)
-]
-$domain-type-choice /= uint ; local scope identifier
-$domain-type-choice /= tstr ; local scope identifier
-$domain-type-choice /= tagged-uuid-type ; global scope identifier
-
-; DOMAIN-MEMBERSHIP-TRIPLE-RECORD
-; Predicate: $TD Target domain has member environment(s) $EV
-$$triples-map-extension //= ( 
-  comid.domain-membership-triples => [ + domain-membership-triple-record ]
-)
-
-domain-membership-triple-record = [
-  $domain-type-choice ; target domain
-  [ + environment-map ] ; member environment(s)
-]
