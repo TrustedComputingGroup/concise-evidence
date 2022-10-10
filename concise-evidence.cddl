@@ -2,18 +2,18 @@ tagged-concise-evidence = #6.571(concise-evidence-map)
 concise-evidence = concise-evidence-map
 
 concise-evidence-map = {
-  ce.ev-triples => ev-triples-map
+  &(ce.ev-triples: 0) => ev-triples-map
   * $$concise-evidence-map-extension
 }
 $evidence-id-type-choice /= tagged-uuid-type
 ; additional evidence identifier types may be added here
 
 ev-triples-map = non-empty< {
-  ? ce.evidence-triples => [ + reference-triple-record ]
-  ? ce.identity-triples => [ + identity-triple-record ]
-  ? ce.dependency-triples => [ + domain-dependency-triple-record ]
-  ? ce.domain-membership-triples => [ + domain-membership-triple-record ]
-  ? ce.coswid-triples => [ + ev-coswid-triple-record ]
+  ? &(ce.evidence-triples: 0) => [ + reference-triple-record ]
+  ? &(ce.identity-triples: 1) => [ + identity-triple-record ]
+  ? &(ce.dependency-triples: 2) => [ + domain-dependency-triple-record ]
+  ? &(ce.domain-membership-triples: 3) => [ + domain-membership-triple-record ]
+  ? &(ce.coswid-triples: 4) => [ + ev-coswid-triple-record ]
   * $$ev-triples-map-extension
 } > 
 
@@ -23,7 +23,7 @@ ev-coswid-triple-record = [
 ]
 
 ev-coswid-evidence-map = non-empty< { 
-  ? ce.coswid-tag-ids => [ + concise-swid-tag-id ],
-  ? ce.coswid-evidence => evidence-entry,
-  ? ce.authorized-by => [ + $crypto-key-type-choice ] ; see comid schema
+  ? &(ce.coswid-tag-ids: 0) => [ + concise-swid-tag-id ],
+  ? &(ce.coswid-evidence: 1) => evidence-entry,
+  ? &(ce.authorized-by: 2) => [ + $crypto-key-type-choice ] ; see comid schema
 } >

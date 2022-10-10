@@ -1,7 +1,7 @@
 spdm-toc = #6.570(toc-map)
 toc-map = {
-  spdm.tagged-evidence => [ + $tagged-evidence-type-choice],
-  ? spdm.rim-locators =>  [ + corim-locator-map ] ;see corim schema
+  &(spdm.tagged-evidence: 0) => [ + $tagged-evidence-type-choice],
+  ? &(spdm.rim-locators: 1) =>  [ + corim-locator-map ] ;see corim schema
   * $$toc-map-extension
 }
 
