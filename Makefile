@@ -2,7 +2,6 @@
 
 SHELL := /bin/bash
 
-CORIM_DIR_OLD := ietf-corim-cddl
 CORIM_DIR := draft-ietf-rats-corim/cddl
 
 CORIM_DEPS :=
@@ -77,9 +76,7 @@ check:: check-ce check-ce-examples
 
 SPDM_FRAGS := spdm-start.cddl
 SPDM_FRAGS += spdm-toc.cddl
-SPDM_FRAGS += toc-code-points.cddl
 SPDM_FRAGS += concise-evidence.cddl
-SPDM_FRAGS += ce-code-points.cddl
 SPDM_FRAGS += comid-extensions.cddl
 SPDM_FRAGS += $(CORIM_DEPS)
 
@@ -89,7 +86,6 @@ $(eval $(call cddl_check_template,spdm,$(SPDM_FRAGS),$(SPDM_EXAMPLES)))
 
 CE_FRAGS := ce-start.cddl
 CE_FRAGS += concise-evidence.cddl
-CE_FRAGS += ce-code-points.cddl
 CE_FRAGS += comid-extensions.cddl
 CE_FRAGS += $(CORIM_DEPS)
 
