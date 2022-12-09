@@ -64,9 +64,7 @@ CORIM_DEPS += $(CORIM_DIR)/uuid.cddl
 CORIM_DEPS += $(CORIM_DIR)/validity-map.cddl
 CORIM_DEPS += $(CORIM_DIR)/version-map.cddl
 
-#include $(CORIM_DIR)/tools.mk
 include tools.mk
-#include $(CORIM_DIR)/funcs.mk
 include funcs.mk
 
 $(CORIM_DEPS): ; $(MAKE) -C $(CORIM_DIR)
