@@ -1,3 +1,4 @@
 [submodule "draft-ietf-rats-corim"]
 	path = draft-ietf-rats-corim
 	url = https://github.com/ietf-rats-wg/draft-ietf-rats-corim
+        branch = main
