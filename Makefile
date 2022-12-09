@@ -13,6 +13,7 @@ CORIM_DEPS += $(CORIM_DIR)/comid-role-type-choice.cddl
 CORIM_DEPS += $(CORIM_DIR)/concise-mid-tag.cddl
 CORIM_DEPS += $(CORIM_DIR)/concise-swid-tag.cddl
 CORIM_DEPS += $(CORIM_DIR)/concise-tag-type-choice.cddl
+CORIM_DEPS += $(CORIM_DIR)/conditional-reference-series-triple-record.cddl
 CORIM_DEPS += $(CORIM_DIR)/corim-entity-map.cddl
 CORIM_DEPS += $(CORIM_DIR)/corim-id-type-choice.cddl
 CORIM_DEPS += $(CORIM_DIR)/corim-locator-map.cddl
@@ -70,8 +71,8 @@ include funcs.mk
 
 $(CORIM_DEPS): ; $(MAKE) -C $(CORIM_DIR)
 
-check:: check-spdm check-spdm-examples
 check:: check-comidx check-comidx-examples
+check:: check-spdm check-spdm-examples
 check:: check-ce check-ce-examples
 
 SPDM_FRAGS := spdm-start.cddl
