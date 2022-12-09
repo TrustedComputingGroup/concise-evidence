@@ -3,26 +3,24 @@
     / ce.evidence-triples / 0 : [
       [ /** note: uses reference-triple-record schema **/
         / environment-map / {
-          / comid.class / 0 : {
-            / comid.class-id / 0 :
+          / class / 0 : {
+            / class-id / 0 :
               / tagged-oid-type / 111(h'6086480186F84D010F046301'), / 2.16.840.1.113741.1.15.4.99.1 /
               / comid.vendor / 1 : "xyzinc.example"
           }
         },
-        [ 
-          / measurement-map / {
-            / comid.mval / 1 : {
-              / comid.spdm-indirect / 12 : / extends measurement-values-map / {
-                / spdm.index / 0 : [ 1, 2, 3, 4, 5 ]
-              },
-              / comid.digests / 2 : [ [ 1, h'FFFEFDFCFBFAF9F8F7F6F5F4F3F2F1F0'] ],
-              / comid.raw-value / 4 : 560(h'0123456789')
+        / measurement-map / {
+          / mval / 1 : {
+            / spdm-indirect / 12 : / extends measurement-values-map / {
+              / index / 0 : [ 1, 2, 3, 4, 5 ]
             },
-            / comid.authorized-by / 2 : [
-              / tagged-pkix-base64-key-type / 554("base64_key_X")
-            ]
-          }
-        ]
+            / digests / 2 : [ [ 1, h'FFFEFDFCFBFAF9F8F7F6F5F4F3F2F1F0'] ],
+            / raw-value / 4 : 560(h'0123456789')
+          },
+          / authorized-by / 2 : [
+            / tagged-pkix-base64-key-type / 554("base64_key_X")
+          ]
+        }
       ]
     ]
   }
