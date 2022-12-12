@@ -2,10 +2,10 @@
 ; Measurement Values map extensions
 ;
 $$measurement-values-map-extension //= (
-  &(comid.spdm-indirect: 12) => spdm-indirect-map
+  &(spdm-indirect: 12) => spdm-indirect-map
 )
 spdm-indirect-map = {
-  &(spdm.index: 0) => [ + uint ]
+  &(index: 0) => [ + uint ]
   * $$spdm-indirect-map-extension
 }
 

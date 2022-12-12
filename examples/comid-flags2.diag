@@ -28,17 +28,15 @@
               / comid.vendor / 1 : "fwmfginc.example"
            }
           },
-          [ 
-            / measurement-map / {
-              / comid.mval / 1 : {
-                / comid.flags / 3 : { 
-                  / flag-secure / 0 : true,
-                  / flag-runtime-meas / 6 : false,
-                  / flag-tcb-meas / 8 : true
-                } 
+          / measurement-map / {
+            / comid.mval / 1 : {
+              / comid.flags / 3 : { 
+                / flag-secure / 0 : true,
+                / flag-runtime-meas / 6 : false,
+                / flag-tcb-meas / 8 : true
               }
             }
-          ]
+          }
         ]
       ]
   }
