@@ -1,10 +1,9 @@
 tagged-spdm-toc = #6.570(bytes .cbor spdm-toc-map)
 spdm-toc = spdm-toc-map
 spdm-toc-map = {
-  &(spdm.tagged-evidence: 0) => [ + $tagged-evidence-type-choice]
-  ? &(spdm.rim-locators: 1) =>  [ + corim-locator-map ] ;see corim schema
+  &(tagged-evidence: 0) => [ + $tagged-evidence-type-choice]
+  ? &(rim-locators: 1) =>  [ + corim-locator-map ] ;see corim schema
   * $$spdm-toc-map-extension
 }
 
 $tagged-evidence-type-choice /= tagged-concise-evidence
-;tagged-concise-evidence = #6.571(concise-evidence-map)
