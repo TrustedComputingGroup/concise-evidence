@@ -1,6 +1,6 @@
-/ spdm-toc / 570( << {
+/ spdm-toc / 570( {
   / spdm.tagged-evidence / 0 : [
-    571( << {
+    571( {
       / ce.ev-triples / 0 : {
         / ce.domain-membership-triples / 3 : [
           [ / domain / "XYZ_Root-of-trust",
@@ -103,7 +103,7 @@
           ]
         ]
       }
-    } >> )
+    } )
   ],
   / spdm-rim-locators / 1 : [
     / corim-locator-map / {
@@ -115,4 +115,4 @@
       / corim.href / 0 : 32("https://rim-revoke.example.com/path/to/revocation.xcorim")
     }
   ]
-} >> )
+} )

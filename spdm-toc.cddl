@@ -1,4 +1,4 @@
-tagged-spdm-toc = #6.570(bytes .cbor spdm-toc-map)
+tagged-spdm-toc = #6.570(spdm-toc-map)
 spdm-toc = spdm-toc-map
 spdm-toc-map = {
   &(tagged-evidence: 0) => [ + $tagged-evidence-type-choice]
