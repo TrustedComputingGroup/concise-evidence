@@ -1,4 +1,4 @@
-tagged-concise-evidence = #6.571(concise-evidence-map)
+tagged-concise-evidence = #6.571(bytes .cbor concise-evidence-map)
 concise-evidence = concise-evidence-map
 
 concise-evidence-map = {
