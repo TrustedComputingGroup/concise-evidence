@@ -34,5 +34,6 @@
       / ** link to manifest revocation list ** /
       / corim.href / 0 : 32("https://rim-revoke.example.com/path/to/revocation.xcorim")
     }
-  ]
+  ],
+  / corim.profile / 2 : 111(h'6086480186F84D010F06') / 2.16.840.1.113741.1.15.6 /
 } )

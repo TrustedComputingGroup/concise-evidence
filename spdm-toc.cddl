@@ -2,7 +2,8 @@ tagged-spdm-toc = #6.570(spdm-toc-map)
 spdm-toc = spdm-toc-map
 spdm-toc-map = {
   &(tagged-evidence: 0) => [ + $tagged-evidence-type-choice]
-  ? &(rim-locators: 1) =>  [ + corim-locator-map ] ;see corim schema
+  ? &(rim-locators: 1) =>  [ + corim-locator-map ] ;see corim
+  ? &(profile: 2) => profile-type-choice ; see corim
   * $$spdm-toc-map-extension
 }
 
