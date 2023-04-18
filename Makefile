@@ -44,6 +44,6 @@ COMID_X_EXAMPLES := $(wildcard examples/comid-*.diag) # concise-mid-tag example 
 
 $(eval $(call cddl_check_template,comidx,$(COMID_X_FRAGS),$(COMID_X_EXAMPLES)))
 
-clean: ; $(RM) $(CLEANFILES)
+clean: ; rm -f $(CLEANFILES)
 
 clean-extra: clean ; $(MAKE) -C $(CORIM_DIR) clean
