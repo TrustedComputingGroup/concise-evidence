@@ -1,0 +1,24 @@
+/ concise-mid-tag / {
+  / tag-identity / 1 : {
+    / tag-id / 0 : h'1EACD596F4A34FB699BFAEB58E0A4E50'
+  },
+  / triples / 4 : {
+    / coswid-triples / 6 : [
+      [
+        / environment-map / {
+          / class / 0 : {
+            / ** Firmware is valid (example) ** /
+            / comid.class-id / 0 :
+            / tagged-oid-type / 111(h'060C6086480186F84D010F046301'), / 2.16.840.1.113741.1.15.4.99.1 /
+            / vendor / 1 : "fwmfginc.example"
+          }
+        },
+        [
+          "com.acme.rrd2013-ce-sp1-v4-1-5-0",
+          "com.acme.rrd2014-ce-sp2-v5-0",
+          h'1EACD596F4A34FB699BFAEB58E0A4E51'
+        ]
+      ]
+    ]
+  }
+}
