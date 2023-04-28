@@ -14,6 +14,7 @@ ev-triples-map = non-empty< {
   ? &(ce.dependency-triples: 2) => [ + domain-dependency-triple-record ]
   ? &(ce.domain-membership-triples: 3) => [ + domain-membership-triple-record ]
   ? &(ce.coswid-triples: 4) => [ + ev-coswid-triple-record ]
+  ? &(ce.attest-key-triples: 5) => [ + attest-key-triple-record ]
   * $$ev-triples-map-extension
 } > 
 
