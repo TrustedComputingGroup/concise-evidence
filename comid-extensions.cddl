@@ -13,7 +13,7 @@ spdm-indirect-map = {
 ; Flags map extensions
 ;
 $$flags-map-extension //= (
-  ? &(not-runtime-meas: 6) => bool
-  ? &(not-immutable: 7) => bool
-  ? &(not-tcb: 8) => bool
+  ? &(runtime-meas: 6) => bool
+  ? &(immutable: 7) => bool
+  ? &(tcb: 8) => bool
 )
