@@ -2,4 +2,4 @@
 	path = draft-ietf-rats-corim
 	url = https://github.com/ietf-rats-wg/draft-ietf-rats-corim
 	branch = main
-	updage = rebase
+	update = rebase
