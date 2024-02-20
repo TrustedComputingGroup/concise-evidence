@@ -2,11 +2,12 @@
 
 SHELL := /bin/bash
 
-CORIM_DIR := draft-ietf-rats-corim/cddl/
+CORIM_DIR := draft-ietf-rats-corim/
+CORIM_FRAGS_DIR := draft-ietf-rats-corim/cddl/
 CE_DIR := ./
 
-include $(CORIM_DIR)corim-frags.mk
-CORIM_DEPS := $(addprefix $(CORIM_DIR), $(CORIM_FRAGS))
+include $(CORIM_FRAGS_DIR)corim-frags.mk
+CORIM_DEPS := $(addprefix $(CORIM_FRAGS_DIR), $(CORIM_FRAGS))
 
 include tools.mk
 include funcs.mk
