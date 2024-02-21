@@ -11,7 +11,7 @@ jobs:
       with:
         submodules: recursive
     - name: install tools
-      run: 
+      run: |
         gem install --user-install cbor-diag
         gem install --user-install  cddl -v 0.10.6
     - name: set up PATH
