@@ -11,9 +11,7 @@ jobs:
       with:
         submodules: recursive
     - name: install tools
-      run: |
-        gem install --user-install cbor-diag
-        gem install --user-install cddl -v 0.10.3
+      run: gem install --user-install cbor-diag cddl
     - name: set up PATH
       run: echo "$(gem env gempath | cut -d':' -f1)/bin" >> $GITHUB_PATH
     - name: assemble and test
