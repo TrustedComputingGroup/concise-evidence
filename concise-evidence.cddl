@@ -9,7 +9,9 @@ $evidence-id-type-choice /= tagged-uuid-type
 ; additional evidence identifier types may be added here
 
 ev-triples-map = non-empty< {
-  ? &(ce.evidence-triples: 0) => [ + reference-triple-record ]
+  ;? &(ce.evidence-triples: 0) => [ + reference-triple-record ]
+  ; temporary workaround to non-speccompliant reference-triple-record
+  ? &(ce.evidence-triples: 0) => [ + ce.evidence-triple-record ]
   ? &(ce.identity-triples: 1) => [ + identity-triple-record ]
   ? &(ce.dependency-triples: 2) => [ + domain-dependency-triple-record ]
   ? &(ce.domain-membership-triples: 3) => [ + domain-membership-triple-record ]
@@ -28,3 +30,9 @@ ev-coswid-evidence-map = {
     &(ce.coswid-evidence: 1) => evidence-entry
   ? &(ce.authorized-by: 2) => [ + $crypto-key-type-choice ] ; see comid schema
 }
+
+; temporary workaround
+ce.evidence-triple-record = [
+  environment-map
+  [ + measurement-map ]
+]
