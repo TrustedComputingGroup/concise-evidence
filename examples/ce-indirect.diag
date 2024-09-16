@@ -9,18 +9,20 @@
               / comid.vendor / 1 : "xyzinc.example"
           }
         },
-        / measurement-map / {
-          / mval / 1 : {
-            / spdm-indirect / 12 : / extends measurement-values-map / {
-              / index / 0 : [ 1, 2, 3, 4, 5 ]
+        [
+          / measurement-map / {
+            / mval / 1 : {
+              / spdm-indirect / 12 : / extends measurement-values-map / {
+                / index / 0 : [ 1, 2, 3, 4, 5 ]
+              },
+              / digests / 2 : [ [ 1, h'FFFEFDFCFBFAF9F8F7F6F5F4F3F2F1F0'] ],
+              / raw-value / 4 : 560(h'0123456789')
             },
-            / digests / 2 : [ [ 1, h'FFFEFDFCFBFAF9F8F7F6F5F4F3F2F1F0'] ],
-            / raw-value / 4 : 560(h'0123456789')
-          },
-          / authorized-by / 2 : [
-            / tagged-pkix-base64-key-type / 554("base64_key_X")
-          ]
-        }
+            / authorized-by / 2 : [
+              / tagged-pkix-base64-key-type / 554("base64_key_X")
+            ]
+          }
+        ]
       ]
     ]
   },
