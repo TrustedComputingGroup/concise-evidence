@@ -28,24 +28,26 @@
             / vendor / 1 : "fwmfginc.example"
           }
         },
-        / measurement-map / {
-          / mval / 1 : {
-            / flags / 3 : { 
-                / configured / 0 : true,
-                / secure / 1 : true,
-                / not-recovery / 2 : true,
-                / debug / 3 : false,
-                / replay-protected / 4 : true,
-                / integrity-protected / 5 : true,
-                / runtime-meas / 6 : true,
-                / immutable / 7 : true,
-                / tcb / 8 : true
-              } 
-          },
-          / comid.authorized-by / 2 : [
-            / tagged-pkix-base64-key-type / 554("base64_key_X")
-          ]
-        }
+        [
+          / measurement-map / {
+            / mval / 1 : {
+              / flags / 3 : { 
+                  / configured / 0 : true,
+                  / secure / 1 : true,
+                  / not-recovery / 2 : true,
+                  / debug / 3 : false,
+                  / replay-protected / 4 : true,
+                  / integrity-protected / 5 : true,
+                  / runtime-meas / 6 : true,
+                  / immutable / 7 : true,
+                  / tcb / 8 : true
+                } 
+            },
+            / comid.authorized-by / 2 : [
+              / tagged-pkix-base64-key-type / 554("base64_key_X")
+            ]
+          }
+        ]
       ]
     ]
   }
