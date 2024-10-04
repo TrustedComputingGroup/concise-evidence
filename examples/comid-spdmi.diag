@@ -28,16 +28,18 @@
             / vendor / 1 : "fwmfginc.example"
           }
         },
-        / measurement-map / {
-          / mval / 1 : {
-            / spdm-indirect / 12 : {
-              / index / 0 : [ 1, 2, 3, 4, 5 ]
-            }
-          },
-          / authorized-by / 2 : [
-            / tagged-pkix-base64-key-type / 554("base64_key_X")
-          ]
-        }
+        [
+          / measurement-map / {
+            / mval / 1 : {
+              / spdm-indirect / 12 : {
+                / index / 0 : [ 1, 2, 3, 4, 5 ]
+              }
+            },
+            / authorized-by / 2 : [
+              / tagged-pkix-base64-key-type / 554("base64_key_X")
+            ]
+          }
+        ]
       ]
     ]
   }
