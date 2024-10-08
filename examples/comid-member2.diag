@@ -1,3 +1,4 @@
+/ Example to create membership containers using Membership triples /
 / concise-mid-tag / {
   / comid.tag-identity / 1 : {
     / comid.tag-id / 0 : h'1EACD596F4A34FB699BFAEB58E0A4E48'
