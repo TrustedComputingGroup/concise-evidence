@@ -28,3 +28,5 @@ ev-coswid-evidence-map = {
     &(ce.coswid-evidence: 1) => evidence-entry
   ? &(ce.authorized-by: 2) => [ + $crypto-key-type-choice ] ; see comid schema
 }
+
+$domain-type-choice /= environment-map
