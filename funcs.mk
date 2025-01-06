@@ -29,3 +29,20 @@ CLEANFILES += $(3:.diag=.cbor)
 CLEANFILES += $(3:.diag=.pretty)
 
 endef # cddl_check_template
+
+define cddl_exp_template
+
+exp-$(1): $(EXPORTS_DIR)$(1).cddl
+	echo ">>> Creating exportable cddl file" ;
+
+.PHONY: exp-$(1)
+
+$(EXPORTS_DIR)$(1).cddl: $(2)
+	
+	@for f in $$^ ; do \
+		( grep -v '^;' $$$$f ; echo ) ; \
+	done > $$@
+
+CLEANFILES += $(EXPORTS_DIR)$(1).cddl
+
+endef # cddl_exp_template
