@@ -52,3 +52,7 @@ $(eval $(call cddl_check_template,comidx,$(COMID_X_FRAGS),$(COMID_X_EXAMPLES)))
 clean: ; rm -f $(CLEANFILES)
 
 clean-extra: clean ; $(MAKE) -C $(CORIM_DIR) clean
+
+export-ce: ce-autogen.cddl
+	@echo -n "copying ce.cddl to exports"
+	@cp $(CE_DIR)/ce-autogen.cddl exports/ce.cddl
