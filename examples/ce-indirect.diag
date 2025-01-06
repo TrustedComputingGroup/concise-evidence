@@ -1,4 +1,4 @@
-/ concise-evidence / {
+/ tagged-concise-evidence / 571({
   / ce.ev-triples / 0 : {
     / ce.evidence-triples / 0 : [
       [ /** note: uses reference-triple-record schema **/
@@ -27,4 +27,4 @@
     ]
   },
   /ce.evidence-id / 1 : 37(h'67b28b6c34cc40a19117ab5b05911e37')
-}
+})

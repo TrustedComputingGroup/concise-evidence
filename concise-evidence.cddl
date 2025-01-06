@@ -9,14 +9,39 @@ $evidence-id-type-choice /= tagged-uuid-type
 ; additional evidence identifier types may be added here
 
 ev-triples-map = non-empty< {
-  ? &(ce.evidence-triples: 0) => [ + reference-triple-record ]
-  ? &(ce.identity-triples: 1) => [ + identity-triple-record ]
-  ? &(ce.dependency-triples: 2) => [ + domain-dependency-triple-record ]
-  ? &(ce.domain-membership-triples: 3) => [ + domain-membership-triple-record ]
+  ? &(ce.evidence-triples: 0) => [ + evidence-triple-record ]
+  ? &(ce.identity-triples: 1) => [ + ev-identity-triple-record ]
+  ? &(ce.dependency-triples: 2) => [ + ev-dependency-triple-record ]
+  ? &(ce.domain-membership-triples: 3) => [ + ev-membership-triple-record ]
   ? &(ce.coswid-triples: 4) => [ + ev-coswid-triple-record ]
-  ? &(ce.attest-key-triples: 5) => [ + attest-key-triple-record ]
+  ? &(ce.attest-key-triples: 5) => [ + ev-attest-key-triple-record ]
   * $$ev-triples-map-extension
 } > 
+
+evidence-triple-record = [
+  environment-map
+  [ + measurement-map ]
+]
+
+ev-identity-triple-record = [
+  environment-map
+  [ + $crypto-key-type-choice ]
+]
+
+ev-attest-key-triple-record = [
+  environment-map
+  [ + $crypto-key-type-choice ]
+]
+
+ev-dependency-triple-record = [
+  $domain-type-choice
+  [ + $domain-type-choice ]
+]
+
+ev-membership-triple-record = [
+  $domain-type-choice
+  [ + environment-map ]
+]
 
 ev-coswid-triple-record = [ 
   environment-map, 
