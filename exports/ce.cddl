@@ -11,11 +11,14 @@ spdm-toc-map = {
 
 $tagged-evidence-type-choice /= tagged-concise-evidence
 
+concise-evidence = concise-evidence-map / tagged-concise-evidence
+
 tagged-concise-evidence = #6.571(concise-evidence-map)
-concise-evidence = concise-evidence-map
+
 concise-evidence-map = {
   &(ce.ev-triples: 0) => ev-triples-map
   ? &(ce.evidence-id: 1) => $evidence-id-type-choice
+  ? &(profile: 2) => $profile-type-choice 
   * $$concise-evidence-map-extension
 }
 $evidence-id-type-choice /= tagged-uuid-type
