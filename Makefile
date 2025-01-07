@@ -2,18 +2,19 @@
 
 SHELL := /bin/bash
 
-CORIM_DIR := draft-ietf-rats-corim/cddl/
+#CORIM_DIR := draft-ietf-rats-corim/cddl/
 IMPORTS_DIR := imports/
 export EXPORTS_DIR := exports/
 CE_DIR := ./
 
-include $(CORIM_DIR)corim-frags.mk
-CORIM_DEPS := $(addprefix $(CORIM_DIR), $(CORIM_FRAGS))
+#include $(CORIM_DIR)corim-frags.mk
+#CORIM_DEPS := $(addprefix $(CORIM_DIR), $(CORIM_FRAGS))
 
 include tools.mk
 include funcs.mk
 
-$(CORIM_DEPS): ; $(MAKE) -C $(CORIM_DIR)
+#$(CORIM_DEPS): ; $(MAKE) -C $(CORIM_DIR)
+
 #
 # manually link newly built corim dependencies to imports/corim-import.cddl
 #
@@ -27,7 +28,6 @@ check:: exp-ce
 include $(CE_DIR)ce-frags.mk
 CE_DEPS := $(addprefix $(CE_DIR), $(CE_FRAGS))
 
-#SPDM_FRAGS := spdm-start.cddl
 SPDM_FRAGS += $(CE_DEPS)
 SPDM_FRAGS += $(CORIM_IMPORT)
 
@@ -56,7 +56,7 @@ $(eval $(call cddl_exp_template,ce,$(CE_DEPS)))
 
 clean: ; rm -f $(CLEANFILES)
 
-clean-extra: clean ; $(MAKE) -C $(CORIM_DIR) clean
+#clean-extra: clean #; $(MAKE) -C $(CORIM_DIR) clean
 
 exce: ce-autogen.cddl
 	@echo -n "copying ce.cddl to exports"
