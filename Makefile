@@ -27,7 +27,7 @@ check:: exp-ce
 include $(CE_DIR)ce-frags.mk
 CE_DEPS := $(addprefix $(CE_DIR), $(CE_FRAGS))
 
-SPDM_FRAGS := spdm-start.cddl
+#SPDM_FRAGS := spdm-start.cddl
 SPDM_FRAGS += $(CE_DEPS)
 SPDM_FRAGS += $(CORIM_IMPORT)
 
