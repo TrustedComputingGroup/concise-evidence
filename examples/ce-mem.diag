@@ -1,4 +1,4 @@
-/ concise-evidence / {
+/ tagged-concise-evidence / 571({
   / ce.ev-triples / 0 : {
     / ce.domain-membership-triples / 3 : [
       [ / domain / "XYZ_Root-of-trust",
@@ -101,4 +101,4 @@
       ]
     ]
   }
-}
+})
