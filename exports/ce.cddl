@@ -1,0 +1,85 @@
+spdm-toc = spdm-toc-map / tagged-spdm-toc
+
+tagged-spdm-toc = #6.570(spdm-toc-map)
+
+spdm-toc-map = {
+  &(tagged-evidence: 0) => [ + $tagged-evidence-type-choice]
+  ? &(rim-locators: 1) =>  [ + corim-locator-map ] ;see corim
+  ? &(profile: 2) => $profile-type-choice ; see corim
+  * $$spdm-toc-map-extension
+}
+
+$tagged-evidence-type-choice /= tagged-concise-evidence
+
+concise-evidence = concise-evidence-map / tagged-concise-evidence
+
+tagged-concise-evidence = #6.571(concise-evidence-map)
+
+concise-evidence-map = {
+  &(ce.ev-triples: 0) => ev-triples-map
+  ? &(ce.evidence-id: 1) => $evidence-id-type-choice
+  ? &(profile: 2) => $profile-type-choice 
+  * $$concise-evidence-map-extension
+}
+$evidence-id-type-choice /= tagged-uuid-type
+
+ev-triples-map = non-empty< {
+  ? &(ce.evidence-triples: 0) => [ + evidence-triple-record ]
+  ? &(ce.identity-triples: 1) => [ + ev-identity-triple-record ]
+  ? &(ce.dependency-triples: 2) => [ + ev-dependency-triple-record ]
+  ? &(ce.membership-triples: 3) => [ + ev-membership-triple-record ]
+  ? &(ce.coswid-triples: 4) => [ + ev-coswid-triple-record ]
+  ? &(ce.attest-key-triples: 5) => [ + ev-attest-key-triple-record ]
+  * $$ev-triples-map-extension
+} > 
+
+evidence-triple-record = [
+  environment-map
+  [ + measurement-map ]
+]
+
+ev-identity-triple-record = [
+  environment-map
+  [ + $crypto-key-type-choice ]
+]
+
+ev-attest-key-triple-record = [
+  environment-map
+  [ + $crypto-key-type-choice ]
+]
+
+ev-dependency-triple-record = [
+  $domain-type-choice
+  [ + $domain-type-choice ]
+]
+
+ev-membership-triple-record = [
+  $domain-type-choice
+  [ + environment-map ]
+]
+
+ev-coswid-triple-record = [ 
+  environment-map, 
+  [ + ev-coswid-evidence-map ]
+]
+
+ev-coswid-evidence-map = { 
+  ? &(ce.coswid-tag-id: 0) => concise-swid-tag-id
+    &(ce.coswid-evidence: 1) => evidence-entry
+  ? &(ce.authorized-by: 2) => [ + $crypto-key-type-choice ] ; see comid schema
+}
+
+$$measurement-values-map-extension //= (
+  &(spdm-indirect: 12) => spdm-indirect-map
+)
+spdm-indirect-map = {
+  &(index: 0) => [ + uint ]
+  * $$spdm-indirect-map-extension
+}
+
+$$flags-map-extension //= (
+  ? &(is-runtime-meas: 6) => bool
+  ? &(is-immutable: 7) => bool
+  ? &(is-tcb: 8) => bool
+)
+
