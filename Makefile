@@ -14,6 +14,7 @@ include funcs.mk
 #
 CORIM_IMPORT := $(addprefix $(IMPORTS_DIR), corim-import.cddl )
 
+check:: check-eat check-eat-examples
 check:: check-comidx check-comidx-examples
 check:: check-spdm check-spdm-examples
 check:: check-ce check-ce-examples
@@ -44,6 +45,15 @@ COMID_X_FRAGS += $(CORIM_IMPORT)
 COMID_X_EXAMPLES := $(wildcard examples/comid-*.diag) # concise-mid-tag example filenames have 'comid-' prefix
 
 $(eval $(call cddl_check_template,comidx,$(COMID_X_FRAGS),$(COMID_X_EXAMPLES)))
+
+EAT_FRAGS := eat-start.cddl
+EAT_FRAGS += $(CE_DEPS)
+EAT_FRAGS += $(CORIM_IMPORT)
+EAT_FRAGS += cwt-eat.cddl
+
+EAT_EXAMPLES := $(wildcard examples/eat-*.diag) # eat example filenames have 'eat-' prefix
+
+$(eval $(call cddl_check_template,eat,$(EAT_FRAGS),$(EAT_EXAMPLES)))
 
 # Make ce.cddl export file
 $(eval $(call cddl_exp_template,ce,$(CE_DEPS)))
