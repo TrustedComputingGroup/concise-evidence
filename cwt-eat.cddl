@@ -1,0 +1,38 @@
+
+cwt-eat = {
+  ; CWT claims are registered at https://www.iana.org/assignments/cwt/cwt.xhtml
+
+  ; EAT claims are defined in https://datatracker.ietf.org/doc/draft-ietf-rats-eat/ 
+  
+  ; An EAT profile is either a URL or an OID. 
+  ? &(eat-profile : 265 ) => ~oid ; "2.16.840.1.113741.1.16.1" - note: `~` strips CBOR tag #6.111(oid) from `oid`
+
+  ; Issuer claim is StringOrURI (tstr)
+  &(iss : 1) => tstr
+
+  ; Subject claim as StringOrURI (tstr)
+  ? &(sub : 2) => tstr / bstr
+
+  ; Nonce claim is nonce-type = bstr .size (8..64)
+  ? &(nonce : 10) => bstr
+
+  ; EAT measurements claim is defined in section-4.2.16
+  ? &(eat-measurements : 273) => measurements-type
+  
+}
+
+$measurements-body-cbor /= concise-evidence-map
+oid = tagged-oid-type
+
+; EAT related CDDL
+
+JC<J,C> = JSON-ONLY<J> / CBOR-ONLY<C>
+JSON-ONLY<J> = J .feature "json"
+CBOR-ONLY<C> = C .feature "cbor"
+
+measurements-type = [+ measurements-format]
+measurements-format = [
+  content-type:   coap-content-format,
+  content-format: JC< $measurements-body-json, $measurements-body-cbor >
+]
+coap-content-format = uint .le 65535
