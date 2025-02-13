@@ -1,0 +1,32 @@
+/ cwt-eat / {
+	/ eat-profile / 265 : h'88378952', / fake OID /
+	/ iss / 1 : "MyIssuer",
+	/ eat-measurements /  273 : [
+		/ measurements-format / [
+			10571,
+			/ concise-evidence / {
+				/ ce.ev-triples / 0 : / ev-triples-map / {
+					/ ce.evidence-triples / 0 : [
+						/ evidence-triple-record / [
+							/ environment-map / {
+								/ class / 0 : / class-map / {
+									/ class-id / 0 :
+										/ tagged-oid-type / 111(h'8837895201'),
+									/ vendor / 1: "Misc",
+									/ model / 2: "0123456789ABCDEF" 
+								}
+							},
+							[
+								/ measurement-map / {
+									/ mval / 1 : / measurement-values-map / {
+										/ svn / 1 : 552(1)
+									}
+								}
+							]
+						]
+					]
+				}
+			}
+		]
+	]
+}
