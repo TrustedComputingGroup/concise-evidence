@@ -36,3 +36,27 @@ measurements-format = [
   content-format: JC< $measurements-body-json, $measurements-body-cbor >
 ]
 coap-content-format = uint .le 65535
+
+signed-cwt = #6.18(COSE-Sign1-concise-evidence)
+
+COSE-Sign1-concise-evidence = [
+  protected: bstr .cbor protected-ce-header-map
+  unprotected: unprotected-ce-header-map
+  payload: bstr .cbor cwt-eat
+  signature: bstr
+]
+
+protected-ce-header-map = {
+  ; Well-defined header fields
+  &(alg-id: 1) => int
+  &(content-type: 3) => tstr / int
+  &(issuer-key-id: 4) => bstr
+  ? &(IV: 5) => bstr,
+  ? &(partial-iv: 6) => bstr,
+  ; User-defined fields
+  * cose-label => cose-value
+}
+
+unprotected-ce-header-map = {
+  * cose-label => cose-value
+}
