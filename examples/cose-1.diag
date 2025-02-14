@@ -2,11 +2,9 @@
   / protected / <<{
     / alg-id / 1 : 1,
     / content-type / 3 : "application/eat+cbor",
-    / issuer-key-id / 4 : h'ABCD',
-    / IV / 5 : h'FFFF',
-    / partial-iv / 6 : h'0011'
+    / issuer-key-id / 4 : h'ABCD'
   }>>,
-  / unprotected / { "Concise Evidence Token Example" : 47 },
+  / unprotected / { / Concise Evidence Token Example/ -65555 : 47 },
   / payload / <<{ 
       / eat-profile / 265 : h'88378952',
       / iss / 1 : "MyIssuer", 
