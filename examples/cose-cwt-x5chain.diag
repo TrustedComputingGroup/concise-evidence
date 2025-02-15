@@ -8,6 +8,7 @@
   / payload / <<{ 
       / eat-profile / 265 : h'88378952',
       / iss / 1 : "MyIssuer", 
+      / nonce / 10: h'AAAABBBBAAAABBBBAAAABBBB',
       / eat-measurements /  273 : [
         / measurements-format / [
           10571, / Content Format ID - Concise Evidence /
