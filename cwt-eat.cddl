@@ -56,6 +56,6 @@ protected-ce-header-map = {
 }
 
 unprotected-ce-header-map = {
-  ? &(x5-chain: 33) => bstr / [ 2 * bstr ]
+  ? &(x5-chain: 33) => bstr / [ 2*certs: bstr ]
   * cose-label => cose-value
 }
