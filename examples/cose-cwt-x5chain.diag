@@ -12,7 +12,7 @@
       / eat-measurements /  273 : [
         / measurements-format / [
           10571, / Content Format ID - Concise Evidence /
-          / concise-evidence / {
+          / concise-evidence / <<{
             / ce.ev-triples / 0 : / ev-triples-map / {
               / ce.evidence-triples / 0 : [
                 / evidence-triple-record / [
@@ -34,7 +34,7 @@
                 ]
               ]
             }
-          }
+          }>>
         ]
       ]
   }>>,
