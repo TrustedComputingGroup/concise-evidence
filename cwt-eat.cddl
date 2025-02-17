@@ -21,7 +21,7 @@ cwt-eat = {
   
 }
 
-$measurements-body-cbor /= concise-evidence-map
+$measurements-body-cbor /= bytes .cbor concise-evidence-map
 oid = tagged-oid-type
 
 ; EAT related CDDL
