@@ -1,0 +1,28 @@
+name: "Upload CDDL assets"
+
+on:
+  push:
+    tags:
+      - "cddl-*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+    - name: install tools
+      run: gem install --user-install cbor-diag cddl
+    - name: set up PATH
+      run: echo "$(gem env gempath | cut -d':' -f1)/bin" >> $GITHUB_PATH
+    - name: assemble and test
+      run: make check
+    - name: "Create Release"
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          ./*-autogen.cddl
