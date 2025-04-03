@@ -16,3 +16,10 @@ jobs:
       run: echo "$(gem env gempath | cut -d':' -f1)/bin" >> $GITHUB_PATH
     - name: assemble and test
       run: make check
+    - name: publish CDDL
+      if: startsWith(github.ref, 'refs/tags/cddl-')
+      uses: softprops/action-gh-release@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          ./*-autogen.cddl
