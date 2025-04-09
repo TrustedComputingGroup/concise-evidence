@@ -3,6 +3,7 @@
 # $1: label
 # $2: cddl fragments
 # $3: diag test files
+# $4: start string
 define cddl_check_template
 
 check-$(1): $(1)-autogen.cddl
@@ -12,6 +13,8 @@ check-$(1): $(1)-autogen.cddl
 
 $(1)-autogen.cddl: $(2)
 	for f in $$^ ; do ( grep -v '^;' $$$$f ; echo ) ; done > $$@
+	$(cddlc) -2tcddl $$@ --start=$(4) > $$@x
+	mv $$@x $$@
 
 CLEANFILES += $(1)-autogen.cddl
 
