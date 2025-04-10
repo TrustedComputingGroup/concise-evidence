@@ -12,9 +12,7 @@ check-$(1): $(1)-autogen.cddl
 .PHONY: check-$(1)
 
 $(1)-autogen.cddl: $(2)
-	for f in $$^ ; do ( grep -v '^;' $$$$f ; echo ) ; done > $$@
-	$(cddlc) -2tcddl $$@ --start=$(4) > $$@x
-	mv $$@x $$@
+	$(cddlc) -2tcddl $$^ --start=$(4) > $$@
 
 CLEANFILES += $(1)-autogen.cddl
 
