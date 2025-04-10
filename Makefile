@@ -74,8 +74,3 @@ check-imports:
 $(eval $(call cddl_exp_template,coev,$(CE_DEPS),$(EXPORTS_DIR),$(IMPORT_FRAGS)))
 
 clean: ; rm -f $(CLEANFILES); $(MAKE) -C $(IMPORTS_DIR) clean
-
-exce: ce-autogen.cddl
-	@echo -n "copying ce.cddl to exports"
-	# @cp $(CE_DIR)/ce-autogen.cddl exports/ce.cddl
-	$(eval $(call cddl_exports_template, exports/ce, $(CE_DEPS)))
