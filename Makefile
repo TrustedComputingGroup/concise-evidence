@@ -9,10 +9,9 @@ CE_DIR := ./
 include tools.mk
 include funcs.mk
 
-#
-# manually link newly built corim dependencies to imports/corim-import.cddl
-#
-CORIM_IMPORT := $(addprefix $(IMPORTS_DIR), corim-import.cddl )
+# Get imports frags - no dependencies
+include $(IMPORTS_DIR)import-frags.mk
+IMPORT_DEPS := $(addprefix $(IMPORTS_DIR), $(IMPORT_FRAGS))
 
 check:: check-cose check-cose-examples
 check:: check-eat check-eat-examples
@@ -24,51 +23,57 @@ check:: exp-ce
 include $(CE_DIR)ce-frags.mk
 CE_DEPS := $(addprefix $(CE_DIR), $(CE_FRAGS))
 
+SPDM_START := spdm-toc
 SPDM_FRAGS += $(CE_DEPS)
-SPDM_FRAGS += $(CORIM_IMPORT)
+SPDM_FRAGS += $(IMPORT_DEPS)
 
 SPDM_EXAMPLES := $(wildcard examples/spdm-*.diag) # spdm toc example filenames have 'spdm-' prefix
 
-$(eval $(call cddl_check_template,spdm,$(SPDM_FRAGS),$(SPDM_EXAMPLES)))
+$(eval $(call cddl_check_template,spdm,$(SPDM_FRAGS),$(SPDM_EXAMPLES),$(SPDM_START)))
 
-EV_FRAGS := ce-start.cddl
+EV_START := tagged-concise-evidence
 EV_FRAGS += $(CE_DEPS)
-EV_FRAGS += $(CORIM_IMPORT)
+EV_FRAGS += $(IMPORT_DEPS)
 
 EV_EXAMPLES := $(wildcard examples/ce-*.diag) # concise-evidence example filenames have 'ce-' prefix
 
-$(eval $(call cddl_check_template,ce,$(EV_FRAGS),$(EV_EXAMPLES)))
+$(eval $(call cddl_check_template,ce,$(EV_FRAGS),$(EV_EXAMPLES),$(EV_START)))
 
-COMID_X_FRAGS := comid-x-start.cddl
+COMID_X_START := concise-mid-tag
 COMID_X_FRAGS += $(CE_DEPS)
-COMID_X_FRAGS += $(CORIM_IMPORT)
+COMID_X_FRAGS += $(IMPORT_DEPS)
 
 COMID_X_EXAMPLES := $(wildcard examples/comid-*.diag) # concise-mid-tag example filenames have 'comid-' prefix
 
-$(eval $(call cddl_check_template,comidx,$(COMID_X_FRAGS),$(COMID_X_EXAMPLES)))
+$(eval $(call cddl_check_template,comidx,$(COMID_X_FRAGS),$(COMID_X_EXAMPLES),$(COMID_X_START)))
 
-EAT_FRAGS := eat-start.cddl
+EAT_START := cwt-eat
 EAT_FRAGS += $(CE_DEPS)
-EAT_FRAGS += $(CORIM_IMPORT)
+EAT_FRAGS += $(IMPORT_DEPS)
 EAT_FRAGS += cwt-eat.cddl
 
 EAT_EXAMPLES := $(wildcard examples/eat-*.diag) # eat example filenames have 'eat-' prefix
 
-$(eval $(call cddl_check_template,eat,$(EAT_FRAGS),$(EAT_EXAMPLES)))
+$(eval $(call cddl_check_template,eat,$(EAT_FRAGS),$(EAT_EXAMPLES),$(EAT_START)))
 
-COSE_FRAGS := cose-start.cddl
+COSE_START := signed-cwt
 COSE_FRAGS += $(CE_DEPS)
-COSE_FRAGS += $(CORIM_IMPORT)
+COSE_FRAGS += $(IMPORT_DEPS)
 COSE_FRAGS += cwt-eat.cddl
 
 COSE_EXAMPLES := $(wildcard examples/cose-*.diag) # signed cwt example filenames have 'cose-' prefix
 
-$(eval $(call cddl_check_template,cose,$(COSE_FRAGS),$(COSE_EXAMPLES)))
+$(eval $(call cddl_check_template,cose,$(COSE_FRAGS),$(COSE_EXAMPLES),$(COSE_START)))
+
+$(IMPORT_DEPS): check-imports
+
+check-imports:
+	$(MAKE) -C $(IMPORTS_DIR)
 
 # Make ce.cddl export file
 $(eval $(call cddl_exp_template,ce,$(CE_DEPS)))
 
-clean: ; rm -f $(CLEANFILES)
+clean: ; rm -f $(CLEANFILES); $(MAKE) -C $(IMPORTS_DIR) clean
 
 exce: ce-autogen.cddl
 	@echo -n "copying ce.cddl to exports"
