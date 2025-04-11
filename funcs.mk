@@ -31,19 +31,23 @@ CLEANFILES += $(3:.diag=.pretty)
 
 endef # cddl_check_template
 
+# $(1) - export label
+# $(2) - cddl fragments 
+# $(3) - export directory
+# $(4) - import dependencies
 define cddl_exp_template
 
-exp-$(1): $(EXPORTS_DIR)$(1).cddl
+exp-$(1): $(3)$(1).cddl
 	echo ">>> Creating exportable cddl file" ;
 
 .PHONY: exp-$(1)
 
-$(EXPORTS_DIR)$(1).cddl: $(2)
-	
+$(3)$(1).cddl: $(2)
+	echo -e "; This cddl file depends on these cddl files: "$(4)"\n" > $$@
 	@for f in $$^ ; do \
 		( grep -v '^;' $$$$f ; echo ) ; \
-	done > $$@
+	done >> $$@
 
-CLEANFILES += $(EXPORTS_DIR)$(1).cddl
+CLEANFILES += $(3)$(1).cddl
 
 endef # cddl_exp_template

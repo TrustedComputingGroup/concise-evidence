@@ -1,3 +1,5 @@
+; This cddl file depends on these cddl files: corim-autogen.cddl
+
 spdm-toc = spdm-toc-map / tagged-spdm-toc
 
 tagged-spdm-toc = #6.570(spdm-toc-map)

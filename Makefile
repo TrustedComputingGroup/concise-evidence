@@ -18,7 +18,7 @@ check:: check-eat check-eat-examples
 check:: check-comidx check-comidx-examples
 check:: check-spdm check-spdm-examples
 check:: check-ce check-ce-examples
-check:: exp-ce
+check:: exp-coev
 
 include $(CE_DIR)ce-frags.mk
 CE_DEPS := $(addprefix $(CE_DIR), $(CE_FRAGS))
@@ -70,12 +70,7 @@ $(IMPORT_DEPS): check-imports
 check-imports:
 	$(MAKE) -C $(IMPORTS_DIR)
 
-# Make ce.cddl export file
-$(eval $(call cddl_exp_template,ce,$(CE_DEPS)))
+# Make coev.cddl export file - used by cddl-releases
+$(eval $(call cddl_exp_template,coev,$(CE_DEPS),$(EXPORTS_DIR),$(IMPORT_FRAGS)))
 
 clean: ; rm -f $(CLEANFILES); $(MAKE) -C $(IMPORTS_DIR) clean
-
-exce: ce-autogen.cddl
-	@echo -n "copying ce.cddl to exports"
-	# @cp $(CE_DIR)/ce-autogen.cddl exports/ce.cddl
-	$(eval $(call cddl_exports_template, exports/ce, $(CE_DEPS)))
