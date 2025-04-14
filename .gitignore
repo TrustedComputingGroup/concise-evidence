@@ -1,3 +1,2 @@
-*-autogen.cddl
+./cddl/*-autogen.cddl
 draft-ietf-rats-corim
-exports/ce.cddl
