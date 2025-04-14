@@ -64,8 +64,7 @@ get-$(1): $(1).cddl
 $(1).cddl:
 	@{ \
 	$$(curl) -LO $$(join $(2), $$(join $(3), $$(join $(4)/, $$@))); \
-	grep -v '^@\.start\.@' $$@ > $$@.tmp; \
-	mv $$@.tmp $$@; \
+	sed -i.bak 's/^@\.start\.@//' $$@; \
 	}
 
 .PHONY: get-$(1)
