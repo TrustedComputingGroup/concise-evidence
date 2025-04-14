@@ -51,3 +51,22 @@ $(3)$(1).cddl: $(2)
 CLEANFILES += $(3)$(1).cddl
 
 endef # cddl_exp_template
+
+# $(1) - imported cddl file name without .cddl
+# $(2) - github url
+# $(3) - download location
+# $(4) - cddl-xxxx tag name
+define get_cddl_release
+
+get-$(1): $(1).cddl
+	echo "Fetched cddl-release: " $$^
+
+$(1).cddl:
+	@{ \
+	$$(curl) -LO $$(join $(2), $$(join $(3), $$(join $(4)/, $$@))); \
+	sed -i.bak 's/^@\.start\.@//' $$@; \
+	}
+
+.PHONY: get-$(1)
+CLEANFILES += $(1).cddl.bak
+endef # get_cddl_release
