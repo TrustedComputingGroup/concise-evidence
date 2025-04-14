@@ -22,4 +22,4 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         files: |
-          ./exports/coev.cddl ./*-autogen.cddl
+          ./exports/*.cddl
