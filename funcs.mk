@@ -69,6 +69,5 @@ $(1).cddl:
 	}
 
 .PHONY: get-$(1)
-.PHONY: $(1).cddl
 
 endef # get_cddl_release
