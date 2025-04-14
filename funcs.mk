@@ -68,5 +68,5 @@ $(1).cddl:
 	}
 
 .PHONY: get-$(1)
-
+CLEANFILES += $(1).cddl.bak
 endef # get_cddl_release
